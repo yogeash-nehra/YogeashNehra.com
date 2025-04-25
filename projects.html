@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+        <!-- Navigation Bar -->
+        <nav class="navbar">
+            <div class="container">
+                <a href="index.html" class="logo">Yogeash Nehra</a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="capstone.html">Capstone</a></li>
+                    <li><a href="Yogeash Nehra Resume.pdf" download>Resume</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+
+    <section class="projects">
+        <h2>My GitHub Repositories</h2>
+        <div id="github-projects" class="projects-container">
+            <!-- GitHub repositories will be dynamically added here -->
+        </div>
+    </section>
+
+    <script>
+        // Fetch GitHub repositories
+        fetch('https://api.github.com/users/yogeash-nehra/repos')
+            .then(response => response.json())
+            .then(repos => {
+                const projectsContainer = document.getElementById('github-projects');
+                repos.forEach(repo => {
+                    // Create a container for each repository
+                    const projectItem = document.createElement('div');
+                    projectItem.classList.add('project-item');
+
+                    // Add repository name
+                    const repoName = document.createElement('h3');
+                    repoName.textContent = repo.name;
+
+                    // Add repository description
+                    const repoDescription = document.createElement('p');
+                    repoDescription.textContent = repo.description || 'No description available';
+
+                    // Add repository link
+                    const repoLink = document.createElement('a');
+                    repoLink.href = repo.html_url;
+                    repoLink.textContent = 'View Repository';
+                    repoLink.target = '_blank';
+
+                    // Append elements to the project item
+                    projectItem.appendChild(repoName);
+                    projectItem.appendChild(repoDescription);
+                    projectItem.appendChild(repoLink);
+
+                    // Append the project item to the container
+                    projectsContainer.appendChild(projectItem);
+                });
+            })
+            .catch(error => console.error('Error fetching repositories:', error));
+    </script>
+</body>
+</html>
