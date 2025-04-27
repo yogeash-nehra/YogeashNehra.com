@@ -24,15 +24,14 @@ a {
     padding: 0 1rem;
 }
 
-/* Navigation Bar */
+/* Navbar Styles */
 .navbar {
-    background-color: #007BFF;
-    color: white;
+    background-color: #f9f9f9;
     padding: 1rem 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .navbar .container {
@@ -44,7 +43,8 @@ a {
 .navbar .logo {
     font-size: 1.5rem;
     font-weight: bold;
-    color: white;
+    color: #333;
+    text-decoration: none;
 }
 
 .navbar .nav-links {
@@ -55,26 +55,32 @@ a {
     padding: 0;
 }
 
-.navbar .nav-links a {
-    color: white;
+.navbar .nav-links .nav-item {
     font-size: 1rem;
-    transition: color 0.3s ease;
+    font-weight: 500;
+    color: #333;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    transition: all 0.3s ease;
 }
 
-.navbar .nav-links a:hover {
-    color: #FFD700;
+.navbar .nav-links .nav-item:hover {
+    background-color: #000000;
+    color: white;
 }
+
 
 /* Hero Section */
 .hero {
     background: url('image.png') no-repeat center center/cover;
     height: 100vh;
     display: flex;
-    align-items: center;           /* Vertically center content */
-    justify-content: flex-start;  /* Push content to the left */
+    align-items: center;
+    justify-content: flex-start;
     text-align: left;
     color: white;
-    padding-left: 8%;             /* Add left spacing */
+    padding-left: 8%;
 }
 
 .hero-content {
@@ -104,7 +110,6 @@ a {
 .hero .btn:hover {
     background: #FFC107;
 }
-
 
 /* About Section */
 .about {
@@ -141,7 +146,7 @@ a {
 .resume .btn {
     display: inline-block;
     padding: 0.8rem 1.5rem;
-    background-color: #007BFF;
+    background-color: #000000;
     color: #fff;
     border-radius: 5px;
     font-size: 1rem;
@@ -152,54 +157,50 @@ a {
     background-color: #0056b3;
 }
 
-/* Projects Section */
-.projects {
-    padding: 2rem 1rem;
+/* Home Projects Section */
+.home-projects {
     background: #fff;
+    padding: 2rem 0;
 }
 
-.projects .projects-grid {
+.home-projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
+    gap: 1.5rem; /* Add spacing between project items */
     text-align: center;
 }
 
-.project-item {
+.home-project-item {
     background: #f9f9f9;
     padding: 1.5rem;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    align-items: center;
+    box-shadow: 0 10px 5px rgba(0, 0, 0, 0.1); /* Add subtle shadow for a card-like appearance */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.project-item h3 {
-    margin-bottom: 0.5rem;
-    font-size: 1.2rem;
+.home-project-item:hover {
+    transform: translateY(-5px); /* Add hover effect to lift the card */
+    box-shadow: 0 30px 10px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
 }
 
-.project-item p {
-    color: #555;
+.home-project-item h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #333;
 }
-.projects .btn {
-    display: inline-block;
-    margin-top: 2rem; /* Add spacing above the button */
-    padding: 0.8rem 1.5rem;
-    background-color: #007BFF;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
+
+.home-project-item p {
     font-size: 1rem;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
+    color: #555;
+    line-height: 1.5;
 }
 
 /* Contact Section */
 .social {
     text-align: center;
     padding: 2rem 1rem;
-    background: #007BFF;
-    color: white;
+    background: #f9f9f9;
+    color: rgb(0, 0, 0);
 }
 
 .social h2 {
@@ -215,20 +216,25 @@ a {
 }
 
 .social-links a {
-    color: white;
-    font-size: 1.2rem;
-    transition: color 0.3s ease;
+    color: rgb(0, 0, 0);
+    font-size: 1.2rem; 
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
 }
 
 .social-links a:hover {
-    color: #FFD700;
+    background-color: #000000;
+    color: white;
 }
 
 /* Buttons */
 .btn {
     display: inline-block;
     padding: 0.8rem 1.5rem;
-    background: #007BFF;
+    background: #f9f9f9;
     color: white;
     border-radius: 5px;
     font-size: 1rem;
@@ -251,7 +257,7 @@ a {
     }
 
     .about .about-grid,
-    .projects .projects-grid {
+    .projects .projects-container {
         grid-template-columns: 1fr;
     }
 
@@ -259,4 +265,142 @@ a {
         flex-direction: column;
         gap: 1rem;
     }
+}
+
+/* Projects Page */
+.projects {
+    padding: 2rem 1rem;
+    background: #fff;
+    text-align: center;
+}
+
+.projects h2 {
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: #333;
+}
+
+/* Projects Section */
+.projects-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem; /* Increased gap for better spacing */
+    justify-items: center;
+}
+
+.project-item {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    width: 100%;
+    max-width: 350px;
+    box-sizing: border-box; /* Ensures padding doesn't affect width */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add subtle shadow for a card-like appearance */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-item:hover {
+    transform: translateY(-5px); /* Add hover effect to lift the card */
+    box-shadow: 0 30px 10px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+}
+
+.project-item .repo-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #007BFF;
+    text-decoration: none;
+    margin-bottom: 0.5rem;
+    display: inline-block;
+}
+
+.project-item .repo-name:hover {
+    text-decoration: underline;
+}
+
+.project-item p {
+    color: #555;
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
+}
+
+/* Logo Styles */
+.logo-image {
+    height: 50px; /* Adjust the height of the logo */
+    width: auto; /* Maintain aspect ratio */
+    display: block;
+}
+
+/* General Styles */
+.capstone-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.capstone-section {
+    padding: 2rem 0;
+    background: #f9f9f9;
+}
+
+.capstone-section:nth-child(even) {
+    background: #fff;
+}
+
+.capstone-section-title {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    color: #333;
+}
+
+.capstone-section-text, .capstone-list {
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+    color: #555;
+}
+
+.capstone-list {
+    list-style: disc;
+    padding-left: 1.5rem;
+}
+
+/* Hero Section */
+.capstone-hero {
+    background: black center center/cover;
+    color: white;
+    text-align: center;
+    padding: 4rem 1rem;
+}
+
+.capstone-hero-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.capstone-hero-tagline {
+    font-size: 1.2rem;
+    font-style: italic;
+}
+
+/* Gallery Image */
+.capstone-demo-image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 1rem auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Navbar */
+.capstone-navbar {
+    background-color: #f9f9f9;
+    padding: 1rem 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }

@@ -8,20 +8,23 @@
 </head>
 <body>
 
-        <!-- Navigation Bar -->
-        <nav class="navbar">
-            <div class="container">
-                <a href="index.html" class="logo">Yogeash Nehra</a>
-                <ul class="nav-links">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="projects.html">Projects</a></li>
-                    <li><a href="capstone.html">Capstone</a></li>
-                    <li><a href="Yogeash Nehra Resume.pdf" download>Resume</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="Yogeash Nehra Logo" class="logo-image">
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-item">Home</a></li>
+                <li><a href="projects.html" class="nav-item">Projects</a></li>
+                <li><a href="capstone.html" class="nav-item">Capstone</a></li>
+                <li><a href="Yogeash Nehra Resume.pdf" class="nav-item" download>Resume</a></li>
+                <li><a href="https://www.linkedin.com/in/yogeash-nehra/" class="nav-item">Contact</a></li>
+            </ul>
+        </div>
         </nav>
 
+    <!-- Projects Section -->
     <section class="projects">
         <h2>My GitHub Repositories</h2>
         <div id="github-projects" class="projects-container">
@@ -40,24 +43,20 @@
                     const projectItem = document.createElement('div');
                     projectItem.classList.add('project-item');
 
-                    // Add repository name
-                    const repoName = document.createElement('h3');
+                    // Add repository name as a clickable link
+                    const repoName = document.createElement('a');
+                    repoName.href = repo.html_url;
                     repoName.textContent = repo.name;
+                    repoName.target = '_blank';
+                    repoName.classList.add('repo-name');
 
                     // Add repository description
                     const repoDescription = document.createElement('p');
-                    repoDescription.textContent = repo.description || 'No description available';
-
-                    // Add repository link
-                    const repoLink = document.createElement('a');
-                    repoLink.href = repo.html_url;
-                    repoLink.textContent = 'View Repository';
-                    repoLink.target = '_blank';
+                    repoDescription.textContent = repo.description || 'Description not publicly available';
 
                     // Append elements to the project item
                     projectItem.appendChild(repoName);
                     projectItem.appendChild(repoDescription);
-                    projectItem.appendChild(repoLink);
 
                     // Append the project item to the container
                     projectsContainer.appendChild(projectItem);
