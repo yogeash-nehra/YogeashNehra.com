@@ -26,7 +26,7 @@ a {
 
 /* Navbar Styles */
 .navbar {
-    background-color: #f9f9f9;
+    background-color: #000000;
     padding: 1rem 0;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     position: sticky;
@@ -58,7 +58,7 @@ a {
 .navbar .nav-links .nav-item {
     font-size: 1rem;
     font-weight: 500;
-    color: #333;
+    color: #ffffff;
     text-decoration: none;
     padding: 0.5rem 1rem;
     border-radius: 20px;
@@ -66,8 +66,8 @@ a {
 }
 
 .navbar .nav-links .nav-item:hover {
-    background-color: #000000;
-    color: white;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
 }
 
 
@@ -129,6 +129,7 @@ a {
     padding: 1.5rem;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    
 }
 
 .about-item h3 {
@@ -277,7 +278,7 @@ a {
 .projects h2 {
     margin-bottom: 2rem;
     font-size: 2rem;
-    color: #333;
+    color: #000000;
 }
 
 /* Projects Section */
@@ -309,7 +310,7 @@ a {
 .project-item .repo-name {
     font-size: 1.2rem;
     font-weight: bold;
-    color: #007BFF;
+    color: #000000;
     text-decoration: none;
     margin-bottom: 0.5rem;
     display: inline-block;
