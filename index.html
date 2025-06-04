@@ -9,33 +9,51 @@
     <title>Yogeash Nehra - Software Developer | Auckland, NZ</title>
     <link rel="icon" href="ynfavicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="container">
-            <a href="index.html" class="logo">
-                <img src="logo.png" alt="Yogeash Nehra Logo" class="logo-image">
-            </a>
-            <ul class="nav-links">
-                <li><a href="index.html" class="nav-item active">Home</a></li>
-                <li><a href="projects.html" class="nav-item">Projects</a></li>
-                <li><a href="capstone.html" class="nav-item">Capstone</a></li>
-                <li><a href="Yogeash_Nehra_Resume.pdf" class="nav-item" download>Resume</a></li>
-                <li><a href="https://www.linkedin.com/in/yogeash-nehra/" class="nav-item">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <img src="logo.png" alt="Yogeash Nehra Logo" class="logo-image">
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-item active">Home</a></li>
+        <li><a href="projects.html" class="nav-item">Projects</a></li>
+        <li><a href="capstone.html" class="nav-item">Capstone</a></li>
+        <li><a href="Yogeash Nehra Resume.pdf" class="nav-item" download>Resume</a></li>
+        <li><a href="https://www.linkedin.com/in/yogeash-nehra/" class="nav-item">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
 
-    <!-- Hero Section -->
-    <!-- <section class="hero">
-        <div class="hero-content">
-            <h1>Yogeash Nehra</h1>
-            <p>Software Developer | Auckland, NZ</p>
-            <p>Building scalable, efficient, and user-focused solutions.</p>
-            <a href="#about" class="btn">Learn More</a>
+  <!-- Hero Section -->
+  <div id="hero">
+    <div id="vanta-bg"></div>
+    <div class="overlay glass">
+      <div class="hero-content">
+        <h1>
+          <span id="typed"></span>
+        </h1>
+        <p>Empowering ideas with code, cloud, and creativity.</p>
+        <div class="cta-buttons">
+          <a href="projects.html" class="cta-btn primary-btn">🚀 See My Solutions</a>
+          <a href="https://www.linkedin.com/in/yogeash-nehra/" class="cta-btn secondary-btn">🤝 Let's Collaborate</a>
         </div>
-    </section> -->
+        <div class="scroll-down">
+          <a href="#about" aria-label="Scroll to About">
+            <span class="scroll-arrow"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.126.1/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.topology.min.js"></script>
+  <script src="script.js"></script>
 
     <!-- About Me Section -->
     <section class="about" id="about">
@@ -66,7 +84,7 @@
         <div class="container">
             <h2>Download My Resume</h2>
             <p>Click the button below to download my resume and learn more about my professional journey.</p>
-            <a href="Yogeash_Nehra_Resume.pdf" class="btn" download>Download Resume</a>
+            <a href="Yogeash Nehra Resume.pdf" class="btn" download>Download Resume</a>
         </div>
     </section>
 
@@ -102,5 +120,40 @@
             </div>
         </div>
     </section>
+
+    <!-- Footer -->
+    
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script>
+    particlesJS("particles-js", {
+      "particles": {
+        "number": { "value": 40, "density": { "enable": true, "value_area": 800 } },
+        "color": { "value": "#ffffff" },
+        "shape": { "type": "circle" },
+        "opacity": { "value": 0.15, "random": true },
+        "size": { "value": 40, "random": true },
+        "move": { "enable": true, "speed": 1.5, "direction": "none", "out_mode": "out" }
+      },
+      "interactivity": {
+        "events": { "onhover": { "enable": false }, "onclick": { "enable": false } }
+      },
+      "retina_detect": true
+    });
+
+    new Typed('#typed', {
+      strings: [
+        "Hi, I'm Yogeash Nehra",
+        "Software Developer",
+        "Cloud Innovator"
+      ],
+      typeSpeed: 55,
+      backSpeed: 30,
+      backDelay: 1200,
+      startDelay: 300,
+      loop: true,
+      showCursor: true
+    });
+    </script>
 </body>
 </html>
