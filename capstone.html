@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="PiLot: Autonomous Rover for Smarter Agriculture - A capstone project by Yogeash Nehra.">
-    <meta name="keywords" content="PiLot, Autonomous Rover, Smarter Agriculture, Capstone Project, Yogeash Nehra, GPS Navigation, Obstacle Avoidance, Cloud Monitoring">
-    <meta name="author" content="Yogeash Nehra">
-    <title>PiLot: Autonomous Rover for Smarter Agriculture</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="PiLot: Autonomous Rover for Smarter Agriculture - A capstone project by Yogeash Nehra." />
+  <meta name="keywords" content="PiLot, Autonomous Rover, Smarter Agriculture, Capstone Project, Yogeash Nehra, GPS Navigation, Obstacle Avoidance, Cloud Monitoring" />
+  <meta name="author" content="Yogeash Nehra" />
+  <title>PiLot: Autonomous Rover for Smarter Agriculture</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="container">
@@ -25,83 +26,147 @@
             </ul>
         </div>
     </nav>
+    
+  <!-- Hero Section -->
+  <header class="capstone-hero">
+    <div class="capstone-container">
+      <h1 class="capstone-hero-title">PiLot: Autonomous Rover for Smarter Agriculture</h1>
+      <p class="capstone-hero-tagline"><em>Autonomous navigation. Real-time insight. Smarter, scalable farming starts here.</em></p>
+    </div>
+  </header>
 
-    <!-- Hero Section -->
-    <header class="capstone-hero">
-        <div class="capstone-container">
-            <h1 class="capstone-hero-title">PiLot: Autonomous Rover for Smarter Agriculture</h1>
-            <p class="capstone-hero-tagline"><em>Empowering farms with autonomous navigation, obstacle avoidance, and real-time cloud monitoring.</em></p>
-        </div>
-    </header>
+  <!-- Project Overview -->
+  <section class="capstone-section" id="overview">
+    <div class="capstone-container">
+      <h2>Project Overview</h2>
+      <p>PiLot is a cost-effective autonomous Uncrewed Ground Vehicle (UGV) built to help farms tackle repetitive and time-consuming field tasks. It runs GPS-based missions, avoids obstacles using real-time depth sensing, and streams telemetry and video straight to a cloud dashboard. The system is modular, scalable, and designed for the real-world challenges of modern agriculture.</p>
+    </div>
+  </section>
 
-    <!-- Overview Section -->
-    <section id="overview" class="capstone-section">
-        <div class="capstone-container">
-            <h2 class="capstone-section-title">Overview</h2>
-            <p class="capstone-section-text">PiLot is an autonomous Uncrewed Ground Vehicle (UGV) designed to automate essential farming tasks such as crop monitoring and field navigation. By integrating high-precision GPS, real-time obstacle detection, and cloud-based data streaming, PiLot addresses labour shortages and boosts efficiency in New Zealand agriculture. The system is scalable for future AI and sensor upgrades, benefiting farmers and agri-tech innovators seeking sustainable, cost-effective solutions.</p>
-        </div>
-    </section>
+  <!-- Problem Statement -->
+  <section class="capstone-section">
+    <div class="capstone-container">
+      <h2>Why This Matters</h2>
+      <p>Farming’s getting harder. Labour is expensive and often unavailable, especially for small and mid-sized farms. Full automation is either too costly or too complex. PiLot offers a practical solution — autonomous mobility, smart sensing, and remote visibility — without needing an enterprise budget.</p>
+    </div>
+  </section>
 
-    <!-- Problem Statement Section -->
-    <section id="problem-statement" class="capstone-section">
-        <div class="capstone-container">
-            <h2 class="capstone-section-title">Problem Statement</h2>
-            <p class="capstone-section-text">New Zealand’s agriculture sector faces rising labour costs and recurring shortages of seasonal workers, which threaten productivity and profitability. Manual field tasks are time-consuming and prone to human error. PiLot aims to automate these operations, reducing reliance on manual labour and enabling precise, efficient farm management.</p>
-        </div>
-    </section>
+  <!-- Key Features -->
+  <section class="capstone-section">
+    <div class="capstone-container">
+      <h2>Key Features</h2>
+      <ul class="capstone-list">
+        <li><strong>Autonomous Waypoint Missions:</strong> Follows GPS-defined routes with ±10cm accuracy — great for structured rows or zones.</li>
+        <li><strong>Obstacle Detection:</strong> Continuously scans the path ahead using a stereo depth camera.</li>
+        <li><strong>Obstacle Avoidance:</strong> Dynamically reroutes based on live sensor input — no maps or static routes needed.</li>
+        <li><strong>Real-Time Telemetry:</strong> Sends GPS, speed, heading, and system health data to a live dashboard.</li>
+        <li><strong>Live Video Streaming:</strong> Streams video from the rover to give remote users full visual context.</li>
+        <li><strong>Cloud Architecture:</strong> All data is processed and stored through a scalable cloud interface.</li>
+      </ul>
+    </div>
+  </section>
 
-    <!-- Goals & Objectives Section -->
-    <section id="goals-objectives" class="capstone-section">
-        <div class="capstone-container">
-            <h2 class="capstone-section-title">Goals & Objectives</h2>
-            <ul class="capstone-list">
-                <li>Achieve autonomous navigation using GPS waypoints with ±10cm accuracy</li>
-                <li>Implement real-time obstacle detection and avoidance</li>
-                <li>Enable cloud-based monitoring and data storage for remote oversight</li>
-                <li>Provide a scalable platform for future AI and sensor integration</li>
-            </ul>
-        </div>
-    </section>
+  <!-- My Role -->
+  <section class="capstone-section">
+    <div class="capstone-container">
+      <h2>My Role – Systems Architect</h2>
+      <ul class="capstone-list">
+        <li>Designed and integrated the full system, from sensors and comms to cloud dashboard.</li>
+        <li>Built Python scripts to process depth frames, handle telemetry, and manage video feeds.</li>
+        <li>Developed the user-facing dashboard using HTML, CSS, and JavaScript.</li>
+        <li>Led testing and deployment — solving issues in the field, not just in theory.</li>
+      </ul>
+    </div>
+  </section>
 
-    <!-- My Role Section -->
-    <section id="my-role" class="capstone-section">
-        <div class="capstone-container">
-            <h2 class="capstone-section-title">My Role</h2>
-            <ul class="capstone-list">
-                <li>Led the integration of navigation and obstacle detection systems</li>
-                <li>Developed and tested cloud dashboard for real-time monitoring</li>
-                <li>Coordinated subsystem testing and project documentation</li>
-            </ul>
-        </div>
-    </section>
+  <!-- System Architecture -->
+  <section class="capstone-section">
+    <div class="capstone-container">
+      <h2>System Architecture</h2>
+      <p>Everything runs through a balance of onboard intelligence and cloud connectivity:</p>
+      <ul class="capstone-list">
+        <li><strong>Onboard:</strong> A mini-PC processes data from the GPS and stereo depth camera to guide movement.</li>
+        <li><strong>NTRIP GPS Network:</strong> Correction data from a base station helps keep positioning accurate to within 10cm.</li>
+        <li><strong>Obstacle Processing:</strong> Obstacle distances are calculated in real-time and trigger path updates.</li>
+        <li><strong>Cloud Dashboard:</strong> A hosted interface displays rover location, obstacle range, telemetry, and live video.</li>
+      </ul>
+      <img src="system-architecture.png" alt="System Architecture Diagram" class="capstone-demo-image" />
+    </div>
+  </section>
 
-    <!-- Key Features Section -->
-    <section id="key-features" class="capstone-section">
-        <div class="capstone-container">
-            <h2 class="capstone-section-title">Key Features</h2>
-            <ul class="capstone-list">
-                <li><strong>Autonomous GPS Navigation:</strong> Follows preset waypoints using RTK GPS for high-accuracy movement</li>
-                <li><strong>Obstacle Avoidance:</strong> Uses Intel RealSense depth camera to detect and navigate around obstacles in real time</li>
-                <li><strong>Cloud Dashboard:</strong> Streams live location and sensor data for remote monitoring and analysis</li>
-                <li><strong>Image Capture:</strong> Captures and stores field images for future computer vision applications</li>
-            </ul>
-        </div>
-    </section>
+  <!-- Project Implementation -->
+  <section class="capstone-section">
+    <div class="capstone-container">
+      <h2 class="capstone-section-title">Project Implementation</h2>
 
-    <!-- Gallery Section -->
-    <section id="gallery-demo" class="capstone-section">
-        <div class="capstone-container">
-            <h2 class="capstone-section-title">Gallery / Demo</h2>
-            <img src="rover.webp" alt="PiLot Demo" class="capstone-demo-image">
-        </div>
-    </section>
+      <p class="capstone-section-text">
+        PiLot is built around a plug-and-play concept — one that merges computer vision, GPS logic, and cloud data tools into a field-ready unit. From sensors to streaming, every part had to talk to each other and work in real-time.
+      </p>
 
-    <!-- Contact Section -->
-    <section id="contact" class="capstone-section">
-        <div class="capstone-container">
-            <h2 class="capstone-section-title">Contact</h2>
-            <p class="capstone-section-text">For questions or collaboration, reach me at <a href="mailto:yogi.nehra14@gmail.com">yogi.nehra14@gmail.com</a> or <a href="https://www.linkedin.com/in/yogeash-nehra/" target="_blank">LinkedIn</a>.</p>
-        </div>
-    </section>
+      <p class="capstone-section-text">
+        <strong>System Integration:</strong> A stereo depth camera and GNSS module feed data into an onboard computer, which calculates motion paths and uploads telemetry to the cloud. GPS corrections via an NTRIP service keep positioning accurate and responsive.
+      </p>
+
+      <p class="capstone-section-text">
+        <strong>Obstacle Detection and Avoidance:</strong> The rover checks for obstacles on every frame using stereo depth. When something shows up in its path, it decides on-the-fly how to reroute safely — no need for pre-planned maps or fences.
+      </p>
+
+      <p class="capstone-section-text">
+        <strong>Autonomous Navigation:</strong> The mission starts by loading in a list of GPS waypoints. The rover drives itself through the list, adapting to changes along the way using sensor input and heading correction.
+      </p>
+
+      <p class="capstone-section-text">
+        <strong>Real-Time Telemetry:</strong> As the rover moves, it logs GPS coordinates, heading, and object proximity. This data is pushed to the cloud using REST APIs and is shown instantly on the dashboard.
+      </p>
+
+      <p class="capstone-section-text">
+        <strong>Live Video Streaming:</strong> The onboard camera sends a compressed video feed to the cloud, letting remote viewers monitor the rover in action and plan enhancements for future AI use.
+      </p>
+
+      <p class="capstone-section-text">
+        <strong>Dashboard Interface:</strong> HTML, CSS, and JavaScript were used to build a clean, responsive UI. The dashboard shows location, status, system vitals, and includes the live video. It’s mobile-friendly and ideal for remote use.
+      </p>
+    </div>
+  </section>
+
+  <!-- Results -->
+  <section class="capstone-section">
+    <div class="capstone-container">
+      <h2>Project Outcomes</h2>
+      <ul class="capstone-list">
+        <li>✅ Completed GPS-guided missions with consistent ±10cm accuracy.</li>
+        <li>✅ Detected and avoided obstacles up to 4 metres away using live depth sensing.</li>
+        <li>✅ Launched a functional cloud dashboard with real-time data and live video stream.</li>
+        <li>✅ Created a working platform for future AI or multisensor expansion.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Lessons Learned -->
+  <section class="capstone-section">
+    <div class="capstone-container">
+      <h2>Lessons Learned</h2>
+      <p>This project pushed me to wear many hats — developer, hardware wrangler, field tester, and UI builder. I learned how to bring together complex systems under real-world conditions and how to design for failure, not just success. And most of all, I saw the value of simplifying tech for actual field use.</p>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section class="capstone-section">
+    <div class="capstone-container">
+      <h2>Gallery</h2>
+      <img src="rover.webp" alt="UGV Field Test" class="capstone-demo-image" />
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="capstone-section">
+    <div class="capstone-container">
+      <h2 class="capstone-section-title">Contact</h2>
+      <p class="capstone-section-text">
+        For questions or collaboration, reach me at <a href="mailto:info@yogeashnehra.com">info@yogeashnehra.com</a> or connect on <a href="https://www.linkedin.com/in/yogeash-nehra/" target="_blank">LinkedIn</a>.
+      </p>
+    </div>
+  </section>
+
 </body>
 </html>
