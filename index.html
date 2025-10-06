@@ -3,11 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Yogeash Nehra - Software Developer based in Auckland, NZ. Specializing in full-stack development, website development, and IT solutions.">
-    <meta name="keywords" content="Yogeash Nehra, Software Developer, Graduate Developer, Auckland NZ, Website Developer, Full-Stack Developer, IT Solutions">
-    <meta name="author" content="Yogeash Nehra">
-    <title>Yogeash Nehra - Software Developer | Auckland, NZ</title>
-    <link rel="icon" href="ynfavicon.ico" type="image/x-icon">
+    <title>Yogeash Nehra | Portfolio</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -24,75 +20,79 @@
                 <li><a href="Yogeash_Nehra_Resume.pdf" class="nav-item" download>Resume</a></li>
                 <li><a href="https://www.linkedin.com/in/yogeash-nehra/" class="nav-item">Contact</a></li>
             </ul>
+            <div class="hamburger" id="nav-toggle" aria-label="Open navigation" tabindex="0">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
+        <div class="nav-overlay" id="nav-overlay"></div>
     </nav>
 
     <!-- Hero Section -->
-    <!-- <section class="hero">
-        <div class="hero-content">
+    <header class="hero">
+        <div class="container">
             <h1>Yogeash Nehra</h1>
-            <p>Software Developer | Auckland, NZ</p>
-            <p>Building scalable, efficient, and user-focused solutions.</p>
-            <a href="#about" class="btn">Learn More</a>
+            <p class="hero-tagline">Delivering innovative IT solutions in full-stack, cloud, and automation.</p>
         </div>
-    </section> -->
+    </header>
 
-    <!-- About Me Section -->
-    <section class="about" id="about">
+    <!-- About Section -->
+    <section>
         <div class="container">
             <h2>About Me</h2>
             <div class="about-grid">
                 <div class="about-item">
                     <h3>My Background</h3>
-                    <p>Bachelor of Computing Systems graduate with a passion for full-stack development, cloud technologies, and IT innovation. <br><br>Experienced in delivering practical solutions through both academic and industry projects.</p>
+                    <p>Bachelor of Computing Systems graduate with a passion for full-stack development, cloud technologies, and IT innovation.</p>
+                    <p>Experienced in delivering practical solutions through both academic and industry projects.</p>
                 </div>
                 <div class="about-item">
                     <h3>My Skills</h3>
-                    <p><b>Frontend:</b> React, HTML, CSS, JavaScript<br>
-                        <b>Backend:</b> C#, .NET, Django, Python<br>
-                    <b>Cloud & Tools:</b> AWS, Azure <br>
-                    <br>Strong in database management, API integration, and scalable system design.</p>
+                    <p><strong>Frontend:</strong> React, HTML, CSS, JavaScript</p>
+                    <p><strong>Backend:</strong> C#, .NET, Django, Python</p>
+                    <p><strong>Cloud &amp; Tools:</strong> AWS, Azure</p>
+                    <p>Strong in database management, API integration, and scalable system design.</p>
                 </div>
                 <div class="about-item">
                     <h3>My Experience</h3>
-                    <p>Built and managed client websites, streamlined IT infrastructure for small businesses, contributed to cloud-based applications, and developed interactive games. <br><br>Hands-on experience from real-world projects and hackathons.</p>
+                    <p>Built and managed client websites, streamlined IT infrastructure for small businesses, contributed to cloud-based applications, and developed interactive games.</p>
+                    <p>Hands-on experience from real-world projects and hackathons.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Resume Section -->
-    <section class="resume">
-        <div class="container">
+    <section>
+        <div class="container" style="text-align:center;">
             <h2>Download My Resume</h2>
-            <p>Click the button below to download my resume and learn more about my professional journey.</p>
+            <p>Click below to download my resume and learn more about my professional journey.</p>
             <a href="Yogeash_Nehra_Resume.pdf" class="btn" download>Download Resume</a>
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section class="home-projects">
+    <!-- Projects Preview Section -->
+    <section>
         <div class="container">
-            <h2>Projects</h2>
+            <h2>Featured Projects</h2>
             <div class="home-projects-grid">
                 <div class="home-project-item">
-                    <h3>Esports Event Management</h3>
-                    <p>Event and competitor management system built with C# and Windows Forms.</p>
+                    <h3>Smart Agriculture Rover</h3>
+                    <p>Autonomous rover for real-time farm monitoring and automation.</p>
+                    <a href="capstone.html" class="project-link">View Capstone</a>
                 </div>
                 <div class="home-project-item">
-                    <h3>Inventory Management System</h3>
-                    <p>Java-based system with CRUD operations for efficient inventory tracking.</p>
-                </div>
-                <div class="home-project-item">
-                    <h3>Lodge Booking System</h3>
-                    <p>HTML, CSS, and JavaScript-based booking platform with an interactive UI.</p>
+                    <h3>Cloud Dashboard</h3>
+                    <p>Live telemetry and video streaming for IoT devices, built with AWS and React.</p>
+                    <a href="projects.html" class="project-link">View Projects</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section class="social" id="contact">
+    <footer>
         <div class="container">
             <h2>Connect with Me</h2>
             <div class="social-links">
@@ -101,6 +101,32 @@
                 <a href="https://youtube.com" target="_blank">YouTube</a>
             </div>
         </div>
-    </section>
+    </footer>
+
+    <!-- Navbar JS -->
+    <script>
+    const navToggle = document.getElementById('nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    const navOverlay = document.getElementById('nav-overlay');
+    function openNav() {
+      navLinks.classList.add('open');
+      navOverlay.classList.add('open');
+    }
+    function closeNav() {
+      navLinks.classList.remove('open');
+      navOverlay.classList.remove('open');
+    }
+    navToggle.addEventListener('click', () => {
+      if(navLinks.classList.contains('open')) {
+        closeNav();
+      } else {
+        openNav();
+      }
+    });
+    navOverlay.addEventListener('click', closeNav);
+    document.querySelectorAll('.nav-links .nav-item').forEach(link => {
+      link.addEventListener('click', closeNav);
+    });
+    </script>
 </body>
 </html>
