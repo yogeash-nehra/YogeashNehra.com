@@ -8,26 +8,8 @@
 </head>
 <body>
     <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="container">
-            <a href="index.html" class="logo">
-                <img src="logo.png" alt="Yogeash Nehra Logo" class="logo-image">
-            </a>
-            <ul class="nav-links">
-                <li><a href="index.html" class="nav-item active">Home</a></li>
-                <li><a href="projects.html" class="nav-item">Projects</a></li>
-                <li><a href="capstone.html" class="nav-item">Capstone</a></li>
-                <li><a href="Yogeash_Nehra_Resume.pdf" class="nav-item" download>Resume</a></li>
-                <li><a href="https://www.linkedin.com/in/yogeash-nehra/" class="nav-item">Contact</a></li>
-            </ul>
-            <div class="hamburger" id="nav-toggle" aria-label="Open navigation" tabindex="0">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-        <div class="nav-overlay" id="nav-overlay"></div>
-    </nav>
+    <div id="navbar-placeholder"></div>
+    <script src="navbar.js"></script>
 
     <!-- Hero Section -->
     <header class="hero">
@@ -63,15 +45,6 @@
         </div>
     </section>
 
-    <!-- Resume Section -->
-    <section>
-        <div class="container" style="text-align:center;">
-            <h2>Download My Resume</h2>
-            <p>Click below to download my resume and learn more about my professional journey.</p>
-            <a href="Yogeash_Nehra_Resume.pdf" class="btn" download>Download Resume</a>
-        </div>
-    </section>
-
     <!-- Projects Preview Section -->
     <section>
         <div class="container">
@@ -80,12 +53,17 @@
                 <div class="home-project-item">
                     <h3>Smart Agriculture Rover</h3>
                     <p>Autonomous rover for real-time farm monitoring and automation.</p>
-                    <a href="capstone.html" class="project-link">View Capstone</a>
+                    <a href="capstone" class="project-link">View Capstone</a>
                 </div>
                 <div class="home-project-item">
                     <h3>Cloud Dashboard</h3>
                     <p>Live telemetry and video streaming for IoT devices, built with AWS and React.</p>
-                    <a href="projects.html" class="project-link">View Projects</a>
+                    <a href="projects" class="project-link">View Projects</a>
+                </div>
+                <div class="home-project-item">
+                    <h3>Idea Lab</h3>
+                    <p>Describe an idea, get a feasibility score, phased execution plan, and a downloadable repo scaffold — ready for Cursor or VS Code agent to build.</p>
+                    <a href="idea" class="project-link">Try Idea Lab</a>
                 </div>
             </div>
         </div>
@@ -103,30 +81,6 @@
         </div>
     </footer>
 
-    <!-- Navbar JS -->
-    <script>
-    const navToggle = document.getElementById('nav-toggle');
-    const navLinks = document.querySelector('.nav-links');
-    const navOverlay = document.getElementById('nav-overlay');
-    function openNav() {
-      navLinks.classList.add('open');
-      navOverlay.classList.add('open');
-    }
-    function closeNav() {
-      navLinks.classList.remove('open');
-      navOverlay.classList.remove('open');
-    }
-    navToggle.addEventListener('click', () => {
-      if(navLinks.classList.contains('open')) {
-        closeNav();
-      } else {
-        openNav();
-      }
-    });
-    navOverlay.addEventListener('click', closeNav);
-    document.querySelectorAll('.nav-links .nav-item').forEach(link => {
-      link.addEventListener('click', closeNav);
-    });
-    </script>
+
 </body>
 </html>
