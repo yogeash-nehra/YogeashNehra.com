@@ -2,7 +2,8 @@
 
 Personal portfolio and AI work hub — built with vanilla HTML, CSS, and JavaScript. Deployed on Vercel.
 
-**Live:** [yogeashnehra.com](https://yogeashnehra.com)
+**Live:** [yogeashnehra.com](https://yogeashnehra.com)  
+**Innovation & AI Lab:** [dev.yogeashnehra.com](https://dev.yogeashnehra.com)
 
 ---
 
@@ -33,7 +34,11 @@ npx serve .
 
 Then open `http://localhost:3000`.
 
-## Idea Lab
+## Innovation & AI Lab
+
+AI experiments, tools, and builds live at **[dev.yogeashnehra.com](https://dev.yogeashnehra.com)** — a dedicated space separate from the main portfolio for shipping new AI work.
+
+### Idea Lab
 
 The Idea Lab (`idea.html`) is a client-side AI tool. It supports:
 
