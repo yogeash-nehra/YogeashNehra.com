@@ -59,7 +59,6 @@ YogeashNehra.com/
 ├── logo.png
 ├── rover.webp
 ├── ynfavicon.ico
-├── Yogeash_Nehra_Resume.pdf
 └── vercel.json
 ```
 
