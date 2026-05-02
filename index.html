@@ -3,85 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yogeash Nehra | Portfolio</title>
+    <title>Yogeash Nehra | AI Builder</title>
+    <meta name="description" content="Yogeash Nehra — AI builder and full-stack developer. Tools, experiments, and projects shipped with AI.">
+    <link rel="icon" href="ynfavicon.ico">
     <link rel="stylesheet" href="styles.css">
+    <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+    <script defer src="/_vercel/insights/script.js"></script>
     <script defer src="speed-insights.js"></script>
 </head>
 <body>
-    <!-- Navigation Bar -->
     <div id="navbar-placeholder"></div>
     <script src="navbar.js"></script>
 
-    <!-- Hero Section -->
-    <header class="hero">
+    <!-- Hero -->
+    <header class="hero hero-full">
         <div class="container">
+            <span class="hero-label">AI Builder · Full-Stack Developer</span>
             <h1>Yogeash Nehra</h1>
-            <p class="hero-tagline">Delivering innovative IT solutions in full-stack, cloud, and automation.</p>
+            <p class="hero-tagline">Building AI-powered tools that actually ship.<br>From concept to execution — fast.</p>
+            <div class="hero-ctas">
+                <a href="ai-lab" class="btn btn-white">Explore AI Lab</a>
+                <a href="projects" class="btn btn-outline">All Projects</a>
+            </div>
         </div>
     </header>
 
-    <!-- About Section -->
-    <section>
+    <!-- Featured AI Work -->
+    <section class="section-featured">
         <div class="container">
-            <h2>About Me</h2>
-            <div class="about-grid">
-                <div class="about-item">
-                    <h3>My Background</h3>
-                    <p>Bachelor of Computing Systems graduate with a passion for full-stack development, cloud technologies, and IT innovation.</p>
-                    <p>Experienced in delivering practical solutions through both academic and industry projects.</p>
-                </div>
-                <div class="about-item">
-                    <h3>My Skills</h3>
-                    <p><strong>Frontend:</strong> React, HTML, CSS, JavaScript</p>
-                    <p><strong>Backend:</strong> C#, .NET, Django, Python</p>
-                    <p><strong>Cloud &amp; Tools:</strong> AWS, Azure</p>
-                    <p>Strong in database management, API integration, and scalable system design.</p>
-                </div>
-                <div class="about-item">
-                    <h3>My Experience</h3>
-                    <p>Built and managed client websites, streamlined IT infrastructure for small businesses, contributed to cloud-based applications, and developed interactive games.</p>
-                    <p>Hands-on experience from real-world projects and hackathons.</p>
-                </div>
+            <div class="section-header">
+                <h2>Featured AI Work</h2>
+                <a href="ai-lab" class="section-link">View all →</a>
             </div>
-        </div>
-    </section>
-
-    <!-- Projects Preview Section -->
-    <section>
-        <div class="container">
-            <h2>Featured Projects</h2>
-            <div class="home-projects-grid">
-                <div class="home-project-item">
-                    <h3>Smart Agriculture Rover</h3>
-                    <p>Autonomous rover for real-time farm monitoring and automation.</p>
-                    <a href="capstone" class="project-link">View Capstone</a>
-                </div>
-                <div class="home-project-item">
-                    <h3>Cloud Dashboard</h3>
-                    <p>Live telemetry and video streaming for IoT devices, built with AWS and React.</p>
-                    <a href="projects" class="project-link">View Projects</a>
-                </div>
-                <div class="home-project-item">
+            <div class="featured-grid">
+                <div class="featured-card">
+                    <span class="tag tag--live">Live Tool</span>
                     <h3>Idea Lab</h3>
-                    <p>Describe an idea, get a feasibility score, phased execution plan, and a downloadable repo scaffold — ready for Cursor or VS Code agent to build.</p>
-                    <a href="idea" class="project-link">Try Idea Lab</a>
+                    <p>Drop an idea, get a feasibility score, phased execution plan, and a downloadable repo scaffold — ready for Cursor or VS Code agent to build from.</p>
+                    <a href="idea" class="btn">Try it →</a>
+                </div>
+                <div class="featured-card">
+                    <span class="tag tag--hackathon">AI Hackathon 2024</span>
+                    <h3>EduEqual</h3>
+                    <p>AI-powered education platform that personalises learning content for underserved students. Built and demoed in 24 hours.</p>
+                    <a href="projects" class="btn">View Project →</a>
+                </div>
+                <div class="featured-card">
+                    <span class="tag tag--capstone">Capstone</span>
+                    <h3>PiLot Autonomous Rover</h3>
+                    <p>Real-world autonomous rover for farm monitoring — live video, GPS navigation, sensor data, and obstacle avoidance tested on actual farmland.</p>
+                    <a href="capstone" class="btn">View Build →</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- About -->
+    <section class="section-about">
+        <div class="container container--narrow">
+            <h2>About</h2>
+            <p>Computing Systems graduate focused on building and shipping AI-powered products. I work across the full stack — React frontends, Python backends, AWS infrastructure — but the through-line is always the same: build something real and useful.</p>
+            <p>This site is where I share the tools, experiments, and projects I'm building with AI. If something looks useful, use it.</p>
+            <div class="skill-tags">
+                <span class="skill-tag">React</span>
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">Claude API</span>
+                <span class="skill-tag">OpenAI</span>
+                <span class="skill-tag">AWS</span>
+                <span class="skill-tag">Azure</span>
+                <span class="skill-tag">Django</span>
+                <span class="skill-tag">C# / .NET</span>
+            </div>
+            <div class="about-links">
+                <a href="Yogeash_Nehra_Resume.pdf" target="_blank" class="btn btn-white-on-dark">Resume ↓</a>
+                <a href="projects" class="btn btn-outline-on-dark">All Projects</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
         <div class="container">
-            <h2>Connect with Me</h2>
-            <div class="social-links">
-                <a href="https://www.linkedin.com/in/yogeash-nehra/" target="_blank">LinkedIn</a>
-                <a href="mailto:info@yogeashnehra.com" target="_blank">Email</a>
-                <a href="https://youtube.com" target="_blank">YouTube</a>
+            <div class="footer-inner">
+                <span class="footer-name">Yogeash Nehra</span>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/yogeash-nehra/" target="_blank">LinkedIn</a>
+                    <a href="mailto:info@yogeashnehra.com">Email</a>
+                    <a href="https://youtube.com/@yogeash-nehra" target="_blank">YouTube</a>
+                </div>
             </div>
         </div>
     </footer>
-
-
 </body>
 </html>

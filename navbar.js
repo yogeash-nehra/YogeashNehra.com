@@ -11,9 +11,9 @@
     </a>
     <ul class="nav-links">
       <li><a href="index.html"    class="nav-item" data-page="index">Home</a></li>
+      <li><a href="ai-lab"        class="nav-item" data-page="ai-lab">AI Lab</a></li>
       <li><a href="projects"      class="nav-item" data-page="projects">Projects</a></li>
       <li><a href="capstone"      class="nav-item" data-page="capstone">Capstone</a></li>
-      <li><a href="idea"          class="nav-item" data-page="idea">Idea Lab</a></li>
       <li><a href="https://www.linkedin.com/in/yogeash-nehra/" class="nav-item">Contact</a></li>
     </ul>
     <div class="hamburger" id="nav-toggle" aria-label="Open navigation" tabindex="0">
