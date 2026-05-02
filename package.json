@@ -1,0 +1,23 @@
+{
+  "name": "yogeash-nehra-portfolio",
+  "version": "1.0.0",
+  "description": "Yogeash Nehra's portfolio website with Vercel Speed Insights",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yogeash-nehra/YogeashNehra.com.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yogeash-nehra/YogeashNehra.com/issues"
+  },
+  "homepage": "https://github.com/yogeash-nehra/YogeashNehra.com#readme",
+  "dependencies": {
+    "@vercel/speed-insights": "^2.0.0"
+  }
+}
