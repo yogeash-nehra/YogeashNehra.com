@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Platform Stack | Yogeash Nehra</title>
+    <meta name="description" content="A practical map of the technologies Yogeash Nehra uses to build AI-enabled, cloud-native SaaS platforms.">
+    <link rel="icon" href="ynfavicon.ico">
+    <link rel="stylesheet" href="styles.css">
+    <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+    <script defer src="/_vercel/insights/script.js"></script>
+    <script defer src="speed-insights.js"></script>
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+    <script src="navbar.js"></script>
+
+    <header class="hero hero-stack">
+        <div class="container">
+            <span class="hero-label">SaaS Platforms / AI Systems / Cloud Delivery</span>
+            <h1>Platform Stack</h1>
+            <p class="hero-tagline">The technologies I use to build useful software that can be shipped, tested, and operated.</p>
+            <div class="hero-ctas">
+                <a href="#capabilities" class="btn btn-white">Explore stack</a>
+                <a href="#architecture" class="btn btn-outline">Architecture view</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="stack-intro">
+        <div class="container">
+            <div class="stack-summary-grid">
+                <div class="stack-summary-card">
+                    <span class="stack-number">Frontend</span>
+                    <p>React, TypeScript, Vite, design systems, dashboards, admin tools, and polished product surfaces.</p>
+                </div>
+                <div class="stack-summary-card">
+                    <span class="stack-number">Backend</span>
+                    <p>Go, Python FastAPI, TypeScript APIs, service contracts, event-driven components, and workflow orchestration.</p>
+                </div>
+                <div class="stack-summary-card">
+                    <span class="stack-number">Cloud</span>
+                    <p>Docker, Kubernetes, Kustomize, Terraform, AWS, Azure integrations, and repeatable delivery paths.</p>
+                </div>
+                <div class="stack-summary-card">
+                    <span class="stack-number">AI + Data</span>
+                    <p>LLM tooling, NLP, MCP, MongoDB, PostgreSQL, Redis, NATS, analytics layers, and evaluation workflows.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="capabilities">
+        <div class="container">
+            <div class="section-header">
+                <h2>Capability Map</h2>
+                <span class="section-link">Searchable stack view</span>
+            </div>
+
+            <div class="stack-tool">
+                <aside class="stack-filters" aria-label="Stack filters">
+                    <label for="stackSearch">Search technologies</label>
+                    <input id="stackSearch" class="stack-search" type="search" placeholder="Go, React, Terraform, AI">
+                    <div class="stack-filter-list" aria-label="Capability categories">
+                        <button class="stack-chip active" type="button" data-filter="all">All</button>
+                        <button class="stack-chip" type="button" data-filter="frontend">Frontend</button>
+                        <button class="stack-chip" type="button" data-filter="backend">Backend</button>
+                        <button class="stack-chip" type="button" data-filter="data">AI + Data</button>
+                        <button class="stack-chip" type="button" data-filter="cloud">Cloud</button>
+                        <button class="stack-chip" type="button" data-filter="quality">Quality</button>
+                    </div>
+                </aside>
+
+                <div>
+                    <div class="stack-card-grid" id="stackGrid">
+                        <article class="stack-skill-card" data-category="frontend" data-keywords="react vite typescript ui dashboard design systems frontend">
+                            <span class="tag tag--live">Frontend</span>
+                            <h3>React product interfaces</h3>
+                            <p>Dashboards, analytics pages, admin workflows, and customer-facing SaaS screens built with React, TypeScript, and Vite.</p>
+                            <div class="skill-tags">
+                                <span class="skill-tag">React</span>
+                                <span class="skill-tag">TypeScript</span>
+                                <span class="skill-tag">Vite</span>
+                                <span class="skill-tag">UI systems</span>
+                            </div>
+                        </article>
+
+                        <article class="stack-skill-card" data-category="frontend" data-keywords="workspace pnpm packages shared clients components frontend">
+                            <span class="tag tag--experiment">Frontend</span>
+                            <h3>Shared product packages</h3>
+                            <p>Reusable interface patterns, typed client packages, shared components, and workspace structures that keep multiple surfaces consistent.</p>
+                            <div class="skill-tags">
+                                <span class="skill-tag">pnpm</span>
+                                <span class="skill-tag">Workspace tooling</span>
+                                <span class="skill-tag">Typed clients</span>
+                                <span class="skill-tag">Components</span>
+                            </div>
+                        </article>
+
+                        <article class="stack-skill-card" data-category="backend" data-keywords="go grpc connectrpc gin services backend api">
+                            <span class="tag tag--live">Backend</span>
+                            <h3>Go platform services</h3>
+                            <p>Service-oriented backends, domain APIs, event consumers, operators, and typed service contracts with Go, Gin, gRPC, and ConnectRPC.</p>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Go</span>
+                                <span class="skill-tag">Gin</span>
+                                <span class="skill-tag">gRPC</span>
+                                <span class="skill-tag">ConnectRPC</span>
+                            </div>
+                        </article>
+
+                        <article class="stack-skill-card" data-category="backend" data-keywords="python fastapi api llm service backend">
+                            <span class="tag tag--live">Backend</span>
+                            <h3>Python FastAPI services</h3>
+                            <p>AI-facing APIs, tool services, evaluation endpoints, data processing, and integration services where Python unlocks faster model work.</p>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Python</span>
+                                <span class="skill-tag">FastAPI</span>
+                                <span class="skill-tag">pytest</span>
+                                <span class="skill-tag">Docker</span>
+                            </div>
+                        </article>
+
+                        <article class="stack-skill-card" data-category="backend" data-keywords="node typescript api bff public api backend">
+                            <span class="tag tag--hackathon">Backend</span>
+                            <h3>TypeScript APIs</h3>
+                            <p>Public APIs, BFF layers, integration services, reporting endpoints, and product-facing service layers built with TypeScript.</p>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Node.js</span>
+                                <span class="skill-tag">TypeScript</span>
+                                <span class="skill-tag">REST</span>
+                                <span class="skill-tag">Vitest</span>
+                            </div>
+                        </article>
+
+                        <article class="stack-skill-card" data-category="data" data-keywords="ai llm nlp mcp openai agents evaluation data">
+                            <span class="tag tag--live">AI + Data</span>
+                            <h3>AI application tooling</h3>
+                            <p>LLM-powered features, NLP pipelines, prompt tools, MCP clients and servers, evaluation flows, and agent-style prototypes.</p>
+                            <div class="skill-tags">
+                                <span class="skill-tag">LLM</span>
+                                <span class="skill-tag">NLP</span>
+                                <span class="skill-tag">MCP</span>
+                                <span class="skill-tag">Evaluation</span>
+                            </div>
+                        </article>
+
+                        <article class="stack-skill-card" data-category="data" data-keywords="mongodb postgresql redis nats temporal database events cache workflows">
+                            <span class="tag tag--experiment">AI + Data</span>
+                            <h3>Application data and events</h3>
+                            <p>Document data, relational SaaS records, cache-backed reads, async events, and durable workflows using MongoDB, PostgreSQL, Redis, NATS, and Temporal.</p>
+                            <div class="skill-tags">
+                                <span class="skill-tag">MongoDB</span>
+                                <span class="skill-tag">PostgreSQL</span>
+                                <span class="skill-tag">Redis</span>
+                                <span class="skill-tag">NATS</span>
+                                <span class="skill-tag">Temporal</span>
+                            </div>
+                        </article>
+
+                        <article class="stack-skill-card" data-category="data" data-keywords="analytics reporting cube telemetry redshift metrics">
+                            <span class="tag tag--capstone">AI + Data</span>
+                            <h3>Analytics and reporting</h3>
+                            <p>Operational reporting, analytics dashboards, metric layers, usage telemetry, and data services that make product behaviour visible.</p>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Cube.js</span>
+                                <span class="skill-tag">Reporting</span>
+                                <span class="skill-tag">Telemetry</span>
+                                <span class="skill-tag">Redshift</span>
+                            </div>
+                        </article>
+
+                        <article class="stack-skill-card" data-category="cloud" data-keywords="docker compose containers deployment cloud">
+                            <span class="tag tag--live">Cloud</span>
+                            <h3>Containerized delivery</h3>
+                            <p>Dockerized services, local dependency stacks, repeatable development environments, and deployment-ready application boundaries.</p>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Docker</span>
+                                <span class="skill-tag">Compose</span>
+                                <span class="skill-tag">Containers</span>
+                                <span class="skill-tag">Local dev</span>
+                            </div>
+                        </article>
+
+                        <article class="stack-skill-card" data-category="cloud" data-keywords="kubernetes kustomize operators controller runtime platform cloud">
+                            <span class="tag tag--hackathon">Cloud</span>
+                            <h3>Kubernetes operations</h3>
+                            <p>Environment overlays, service manifests, controller-runtime operators, and platform automation for cloud-native systems.</p>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Kubernetes</span>
+                                <span class="skill-tag">Kustomize</span>
+                                <span class="skill-tag">Operators</span>
+                                <span class="skill-tag">Overlays</span>
+                            </div>
+                        </article>
+
+                        <article class="stack-skill-card" data-category="cloud" data-keywords="aws azure terraform infrastructure cloud iam serverless">
+                            <span class="tag tag--capstone">Cloud</span>
+                            <h3>Cloud infrastructure</h3>
+                            <p>AWS-first infrastructure with Terraform, cloud SDKs, serverless components, managed data services, and Azure integration points.</p>
+                            <div class="skill-tags">
+                                <span class="skill-tag">AWS</span>
+                                <span class="skill-tag">Terraform</span>
+                                <span class="skill-tag">Azure</span>
+                                <span class="skill-tag">Cloud SDKs</span>
+                            </div>
+                        </article>
+
+                        <article class="stack-skill-card" data-category="quality" data-keywords="testing playwright vitest jest pytest quality automation">
+                            <span class="tag tag--experiment">Quality</span>
+                            <h3>Testing and release confidence</h3>
+                            <p>Focused quality checks across unit tests, service tests, browser journeys, AI service validation, and integration-level smoke testing.</p>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Vitest</span>
+                                <span class="skill-tag">Playwright</span>
+                                <span class="skill-tag">Jest</span>
+                                <span class="skill-tag">pytest</span>
+                            </div>
+                        </article>
+                    </div>
+                    <p class="stack-empty" id="stackEmpty">No matching technologies found.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="architecture" class="section-about">
+        <div class="container">
+            <div class="section-header section-header--dark">
+                <h2>Reference SaaS Architecture</h2>
+            </div>
+            <div class="architecture-grid">
+                <div class="architecture-card">
+                    <h3>Product surface</h3>
+                    <p>React, TypeScript, Vite, shared UI packages, API clients, and browser tests for critical workflows.</p>
+                </div>
+                <div class="architecture-card">
+                    <h3>Service layer</h3>
+                    <p>Go for core domain services, TypeScript for BFF and product APIs, and Python FastAPI for AI and data services.</p>
+                </div>
+                <div class="architecture-card">
+                    <h3>Data and workflows</h3>
+                    <p>PostgreSQL for core SaaS records, MongoDB for flexible domain data, Redis for cache, NATS for events, and Temporal for durable workflows.</p>
+                </div>
+                <div class="architecture-card">
+                    <h3>Delivery path</h3>
+                    <p>Docker images, Kubernetes workloads, Kustomize overlays, Terraform-managed cloud resources, and focused automated checks.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container container--narrow">
+            <h2>How this translates</h2>
+            <p class="stack-narrative">I can move from product idea to working system: define the user flow, build the frontend, design the service boundaries, connect AI and data workflows, containerize the pieces, and shape a deployment path that can grow beyond a demo.</p>
+            <div class="about-links">
+                <a href="projects.html" class="btn">View projects</a>
+                <a href="ai-lab.html" class="btn">Explore AI Lab</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-inner">
+                <span class="footer-name">Yogeash Nehra</span>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/yogeash-nehra/" target="_blank">LinkedIn</a>
+                    <a href="mailto:info@yogeashnehra.com">Email</a>
+                    <a href="https://youtube.com/@yogeash-nehra" target="_blank">YouTube</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const stackSearch = document.getElementById('stackSearch');
+        const stackCards = Array.from(document.querySelectorAll('.stack-skill-card'));
+        const stackChips = Array.from(document.querySelectorAll('.stack-chip'));
+        const stackEmpty = document.getElementById('stackEmpty');
+        let activeFilter = 'all';
+
+        function normalize(value) {
+            return value.toLowerCase().trim();
+        }
+
+        function filterStack() {
+            const query = normalize(stackSearch.value);
+            let visible = 0;
+
+            stackCards.forEach(function (card) {
+                const categoryMatch = activeFilter === 'all' || card.dataset.category === activeFilter;
+                const textMatch = query === '' || normalize(card.textContent + ' ' + card.dataset.keywords).includes(query);
+                const show = categoryMatch && textMatch;
+                card.hidden = !show;
+                if (show) visible += 1;
+            });
+
+            stackEmpty.classList.toggle('show', visible === 0);
+        }
+
+        stackChips.forEach(function (chip) {
+            chip.addEventListener('click', function () {
+                activeFilter = chip.dataset.filter;
+                stackChips.forEach(function (item) {
+                    item.classList.toggle('active', item === chip);
+                });
+                filterStack();
+            });
+        });
+
+        stackSearch.addEventListener('input', filterStack);
+    </script>
+</body>
+</html>
