@@ -1088,6 +1088,31 @@ section.section-about p {
   overflow-wrap: anywhere;
 }
 
+.resume-downloads {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.resume-downloads a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  border: 1.5px solid #111;
+  border-radius: 22px;
+  background: #000;
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+
+.resume-downloads a:hover {
+  background: #fff;
+  color: #000;
+  transform: translateY(-2px);
+}
+
 .resume-section ul {
   padding-left: 1.2rem;
 }
