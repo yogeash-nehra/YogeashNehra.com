@@ -4,159 +4,135 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects | Yogeash Nehra</title>
+    <meta name="description" content="Projects by Yogeash Nehra — AI tools, full-stack apps, cloud systems, and hardware builds shipped across professional and personal work.">
+    <link rel="icon" href="ynfavicon.ico">
     <link rel="stylesheet" href="styles.css">
     <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
     <script defer src="/_vercel/insights/script.js"></script>
     <script defer src="speed-insights.js"></script>
 </head>
 <body>
-    <!-- Navigation Bar -->
     <div id="navbar-placeholder"></div>
     <script src="navbar.js"></script>
 
-    <!-- Hero Section -->
-    <header class="hero">
+    <header class="hero hero-ailab">
         <div class="container">
+            <span class="hero-label">AI · Full-Stack · Cloud · Hardware</span>
             <h1>Projects</h1>
-            <p class="hero-tagline">A showcase of my work, from web apps to cloud solutions.</p>
+            <p class="hero-tagline">Real work shipped across AI, cloud, and full-stack.<br>Professional, personal, and everything in between.</p>
+            <div class="hero-ctas">
+                <a href="#featured" class="btn btn-white">Featured Work</a>
+                <a href="#earlier" class="btn btn-outline">Earlier Projects</a>
+            </div>
         </div>
     </header>
 
-    <!-- Projects Grid Section -->
-    <section>
+    <!-- Featured Work -->
+    <section id="featured" class="section-featured">
         <div class="container">
-            <h2>Featured Projects</h2>
-            <div class="home-projects-grid">
-                <!-- Project 1 -->
-                <div class="home-project-item">
-                  <h3>Personal Portfolio Website</h3>
-                  <p>My official portfolio website built with HTML, CSS, and JavaScript. Designed to showcase my projects, experience, and professional background with a clean, responsive layout.</p>
-                  <a href="https://github.com/yogeash-nehra/YogeashNehra.com" class="project-link" target="_blank">View on GitHub</a>
+            <div class="section-header">
+                <h2>Featured Work</h2>
+            </div>
+            <div class="featured-grid">
+                <div class="featured-card">
+                    <span class="tag tag--live">Professional</span>
+                    <h3>Agentic Bug Fixer</h3>
+                    <p>Built at Aderant — an agentic AI tool that analyses bugs across multiple enterprise codebases, automates issue triage, and surfaces fix suggestions for development teams.</p>
+                    <a href="resume" class="btn">View on Resume →</a>
                 </div>
-                <!-- Project 2 -->
-                <div class="home-project-item">
-                  <h3>AWS IoT Dashboard</h3>
-                  <p>A real-time telemetry dashboard built with Python and AWS services to visualise rover data such as GPS location, battery status, and obstacle detection. Part of my Smart Agriculture Rover project.</p>
-                  <a href="https://github.com/yogeash-nehra/AWS-Dashboard" class="project-link" target="_blank">View on GitHub</a>
+                <div class="featured-card">
+                    <span class="tag tag--live">Live Tool</span>
+                    <h3>Idea Lab</h3>
+                    <p>Drop any project idea and get a feasibility score, phased execution plan, tech stack recommendation, and a downloadable repo scaffold — ready for AI agents to build from.</p>
+                    <a href="idea" class="btn">Try it →</a>
                 </div>
-                <!-- Project 3 -->
-                <div class="home-project-item">
-                  <h3>Attendance System (Full-Stack)</h3>
-                  <p>A web-based attendance management platform developed using Django REST Framework and React. Features role-based login, attendance records, and student analytics.</p>
-                  <a href="https://github.com/yogeash-nehra/attendance-system-assignment2" class="project-link" target="_blank">View on GitHub</a>
+                <div class="featured-card">
+                    <span class="tag tag--live">Live</span>
+                    <h3>Dev Hub</h3>
+                    <p>A dedicated sandbox for prototypes, AI experiments, and day-to-day developer tools. Where ideas get tested before they ship to production.</p>
+                    <a href="https://dev.yogeashnehra.com" target="_blank" class="btn">Visit →</a>
                 </div>
-                <!-- Project 4 -->
-                <div class="home-project-item">
-                  <h3>Attendance Tracker (Web App)</h3>
-                  <p>A simplified attendance tracker created with HTML, CSS, and JavaScript for learning basic front-end CRUD operations and data validation.</p>
-                  <a href="https://github.com/yogeash-nehra/attendance-system-assignment" class="project-link" target="_blank">View on GitHub</a>
+                <div class="featured-card">
+                    <span class="tag tag--hackathon">AI Hackathon 2024</span>
+                    <h3>EduEqual</h3>
+                    <p>AI-powered education platform personalising learning content for underserved students. Built and demoed in 24 hours using AWS Lambda, Bedrock, and API Gateway.</p>
+                    <a href="https://github.com/yogeash-nehra/Hackathon" target="_blank" class="btn">View on GitHub →</a>
                 </div>
-                <!-- Project 5 -->
-                <div class="home-project-item">
-                  <h3>Rent Everything (Android App)</h3>
-                  <p>A mobile app built in Android Studio using Java and Firebase. Allows users to rent or lend everyday items with booking, approval, and calendar-based availability features.</p>
-                  <a href="https://github.com/yogeash-nehra/RentEverything" class="project-link" target="_blank">View on GitHub</a>
+                <div class="featured-card">
+                    <span class="tag tag--capstone">Capstone · Best Project</span>
+                    <h3>PiLot Autonomous Rover</h3>
+                    <p>Autonomous farm rover with GPS navigation, obstacle avoidance, live video streaming, and sensor telemetry. Tested on real farmland — not just a classroom demo.</p>
+                    <a href="capstone" class="btn">View Build →</a>
                 </div>
-                <!-- Project 6 -->
-                <div class="home-project-item">
-                  <h3>Quiz App</h3>
-                  <p>Android quiz application that fetches questions dynamically from the Open Trivia API. Developed using Java with Firebase Firestore integration for user data.</p>
-                  <a href="https://github.com/yogeash-nehra/Quiz-App" class="project-link" target="_blank">View on GitHub</a>
-                </div>
-                <!-- Project 7 -->
-                <div class="home-project-item">
-                  <h3>Android API & CRUD Demo</h3>
-                  <p>Demonstration project integrating Retrofit API calls and performing Create, Read, Update, and Delete operations within an Android app.</p>
-                  <a href="https://github.com/yogeash-nehra/Android-API-and-CRUD" class="project-link" target="_blank">View on GitHub</a>
-                </div>
-                <!-- Project 8 -->
-                <div class="home-project-item">
-                  <h3>Rent Everything (Prototype)</h3>
-                  <p>Early prototype of the Rent Everything app built with Firebase authentication and item listing functionality. Served as the foundation for the final release version.</p>
-                  <a href="https://github.com/yogeash-nehra/Rent_Everything" class="project-link" target="_blank">View on GitHub</a>
-                </div>
-                <!-- Project 9 -->
-                <div class="home-project-item">
-                  <h3>Node.js Fundamentals</h3>
-                  <p>Introductory Node.js project demonstrating core server-side concepts such as HTTP routing, middleware, and static file serving.</p>
-                  <a href="https://github.com/yogeash-nehra/nodejs1" class="project-link" target="_blank">View on GitHub</a>
-                </div>
-                <!-- Project 10 -->
-                <div class="home-project-item">
-                  <h3>EduEqual (AI Hackathon Project)</h3>
-                  <p>AI-driven learning platform built during Unitec Hackathon 2024. Focused on personalised education and accessibility using AWS services and natural language processing.</p>
-                  <a href="https://github.com/yogeash-nehra/Hackathon" class="project-link" target="_blank">View on GitHub</a>
-                </div>
-                <!-- Project 11 -->
-                <div class="home-project-item">
-                  <h3>EduEqual Demo</h3>
-                  <p>Front-end demo version of EduEqual showcasing UI and chatbot interactions for learners. Designed to present the concept at the hackathon pitch.</p>
-                  <a href="https://github.com/yogeash-nehra/EduEqual-demo" class="project-link" target="_blank">View on GitHub</a>
-                </div>
-                <!-- Project 12 -->
-                <div class="home-project-item">
-                  <h3>Attendance System (Python CLI)</h3>
-                  <p>Python-based attendance management program for learning file handling, date-time tracking, and data storage logic.</p>
-                  <a href="https://github.com/yogeash-nehra/attendance-system-2024" class="project-link" target="_blank">View on GitHub</a>
-                </div>
-                <!-- Project 13 -->
-                <div class="home-project-item">
-                  <h3>Radio On Web</h3>
-                  <p>A simple web radio application using HTML5 and JavaScript for streaming and playback control through browser audio APIs.</p>
-                  <a href="https://github.com/yogeash-nehra/RadioOnWeb" class="project-link" target="_blank">View on GitHub</a>
-                </div>
-                <!-- Project 14 -->
-                <div class="home-project-item">
-                  <h3>Wolfgramm Holdings Website</h3>
-                  <p>Corporate website built for Wolfgramm Holdings, designed with HTML, CSS, and JavaScript to highlight company services and partnerships.</p>
-                  <a href="https://github.com/yogeash-nehra/WGHoldings" class="project-link" target="_blank">View on GitHub</a>
-                </div>
-                <!-- Project 15 -->
-                <div class="home-project-item">
-                  <h3>Online Portfolio (YogiNehra.online)</h3>
-                  <p>My earlier portfolio website hosted under yoginehra.online, featuring project showcases and contact details for clients and employers.</p>
-                  <a href="https://github.com/yogeash-nehra/Yogeash_Online" class="project-link" target="_blank">View on GitHub</a>
-                </div>
-                <!-- Project 16 -->
-                <div class="home-project-item">
-                  <h3>Web Development Assignment</h3>
-                  <p>Front-end website created using HTML and CSS to demonstrate structured design and semantic layout principles.</p>
-                  <a href="https://github.com/yogeash-nehra/Assignment-2" class="project-link" target="_blank">View on GitHub</a>
-                </div>
-                <!-- Project 17 -->
-                <div class="home-project-item">
-                  <h3>Unity Board Game</h3>
-                  <p>Interactive board game developed in Unity using C# scripts. Focused on implementing turn-based logic, UI animations, and basic game mechanics.</p>
-                  <a href="https://github.com/yogeash-nehra/BoardGame" class="project-link" target="_blank">View on GitHub</a>
-                </div>
-                <!-- Project 18 -->
-                <div class="home-project-item">
-                  <h3>Esports Event Manager</h3>
-                  <p>Windows Forms application created in C# to manage esports tournaments, arenas, and participants. Uses Microsoft Access database for data storage.</p>
-                  <a href="https://github.com/yogeash-nehra/Esports-Event-Management" class="project-link" target="_blank">View on GitHub</a>
-                </div>
-                <!-- Project 19 -->
-                <div class="home-project-item">
-                  <h3>Lodge Booking System</h3>
-                  <p>Hotel and lodge booking web application developed with HTML, CSS, and JavaScript. Includes booking forms, date validation, and responsive design.</p>
-                  <a href="https://github.com/yogeash-nehra/Piha-Lodge-Booking---ISCG6420-Assignment1" class="project-link" target="_blank">View on GitHub</a>
+                <div class="featured-card">
+                    <span class="tag tag--experiment">Cloud · IoT</span>
+                    <h3>AWS IoT Dashboard</h3>
+                    <p>Real-time telemetry and video streaming dashboard for IoT devices. Built on AWS EC2, DynamoDB, and S3 — powers the live data pipeline for the PiLot Rover.</p>
+                    <a href="https://github.com/yogeash-nehra/AWS-Dashboard" target="_blank" class="btn">View on GitHub →</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Earlier Work -->
+    <section id="earlier">
+        <div class="container">
+            <div class="section-header">
+                <h2>Earlier Work</h2>
+                <span class="section-link">University &amp; learning projects</span>
+            </div>
+            <div class="ailab-grid">
+                <div class="ailab-card">
+                    <span class="tag tag--experiment">Django · React</span>
+                    <h3>Attendance System</h3>
+                    <p>Full-stack attendance management platform with Django REST Framework and React. Role-based login, attendance records, and student analytics.</p>
+                    <a href="https://github.com/yogeash-nehra/attendance-system-assignment2" target="_blank" class="btn">GitHub →</a>
+                </div>
+                <div class="ailab-card">
+                    <span class="tag tag--experiment">Android · Firebase</span>
+                    <h3>Rent Everything</h3>
+                    <p>Mobile app for renting and lending everyday items. Built in Java with Firebase — booking, approval flows, and calendar-based availability.</p>
+                    <a href="https://github.com/yogeash-nehra/RentEverything" target="_blank" class="btn">GitHub →</a>
+                </div>
+                <div class="ailab-card">
+                    <span class="tag tag--experiment">Client Work</span>
+                    <h3>Wolfgramm Holdings Website</h3>
+                    <p>Corporate website built for a client — responsive HTML/CSS/JS, company services, and partnership pages.</p>
+                    <a href="https://github.com/yogeash-nehra/WGHoldings" target="_blank" class="btn">GitHub →</a>
+                </div>
+                <div class="ailab-card">
+                    <span class="tag tag--experiment">Android · Firebase</span>
+                    <h3>Quiz App</h3>
+                    <p>Android quiz app that fetches questions from the Open Trivia API. Built in Java with Firebase Firestore for user data and score tracking.</p>
+                    <a href="https://github.com/yogeash-nehra/Quiz-App" target="_blank" class="btn">GitHub →</a>
+                </div>
+                <div class="ailab-card">
+                    <span class="tag tag--experiment">C# · Windows Forms</span>
+                    <h3>Esports Event Manager</h3>
+                    <p>Tournament management app in C# with Microsoft Access database — arenas, participants, and bracket management.</p>
+                    <a href="https://github.com/yogeash-nehra/Esports-Event-Management" target="_blank" class="btn">GitHub →</a>
+                </div>
+                <div class="ailab-card">
+                    <span class="tag tag--experiment">Web App</span>
+                    <h3>Lodge Booking System</h3>
+                    <p>Hotel and lodge booking web app with booking forms, date validation, and responsive design — HTML, CSS, JavaScript.</p>
+                    <a href="https://github.com/yogeash-nehra/Piha-Lodge-Booking---ISCG6420-Assignment1" target="_blank" class="btn">GitHub →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <footer>
         <div class="container">
-            <h2>Connect with Me</h2>
-            <div class="social-links">
-                <a href="https://www.linkedin.com/in/yogeash-nehra/" target="_blank">LinkedIn</a>
-                <a href="mailto:info@yogeashnehra.com" target="_blank">Email</a>
-                <a href="https://youtube.com" target="_blank">YouTube</a>
+            <div class="footer-inner">
+                <span class="footer-name">Yogeash Nehra</span>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/yogeash-nehra/" target="_blank">LinkedIn</a>
+                    <a href="mailto:info@yogeashnehra.com">Email</a>
+                    <a href="https://youtube.com/@yogeash-nehra" target="_blank">YouTube</a>
+                </div>
             </div>
         </div>
     </footer>
-
-
 </body>
 </html>
