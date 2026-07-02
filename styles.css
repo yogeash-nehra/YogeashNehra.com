@@ -1017,12 +1017,6 @@ section.section-about p {
   }
 }
 
-/* ====== TYPEWRITER ====== */
-.typewriter-word {
-    border-right: 2px solid rgba(255,255,255,0.7);
-    padding-right: 3px;
-}
-
 /* ====== ACTIVITY FEED ====== */
 .section-activity {
     padding: 2.2rem 0;
@@ -1303,56 +1297,6 @@ section.section-about p {
         bottom: 1.2rem;
         right: 1.2rem;
     }
-}
-
-/* ====== CURRENTLY BUILDING STRIP ====== */
-.section-currently {
-  padding: 0.9rem 0;
-  background: #fafafa;
-  border-bottom: 1px solid #eee;
-}
-
-.currently-inner {
-  display: flex;
-  align-items: center;
-  gap: 1.2rem;
-  flex-wrap: wrap;
-}
-
-.currently-label {
-  font-size: 0.7rem;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: #111;
-  white-space: nowrap;
-  border: 1.5px solid #222;
-  border-radius: 20px;
-  padding: 0.28rem 0.75rem;
-  flex-shrink: 0;
-}
-
-.currently-text {
-  font-size: 0.97rem;
-  color: #444;
-  flex: 1;
-  line-height: 1.5;
-}
-
-.currently-updated {
-  font-size: 0.75rem;
-  color: #bbb;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-
-@media (max-width: 700px) {
-  .currently-inner {
-    gap: 0.7rem;
-  }
-  .currently-updated {
-    display: none;
-  }
 }
 
 /* ====== RESUME PAGE ====== */

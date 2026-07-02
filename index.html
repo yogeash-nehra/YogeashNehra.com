@@ -20,7 +20,7 @@
         <div class="container">
             <span class="hero-label">AI Builder · Full-Stack Developer</span>
             <h1>Yogeash Nehra</h1>
-            <p class="hero-tagline">Building <span id="typewriter-text" class="typewriter-word"></span> that actually ship.<br>From concept to execution — fast.</p>
+            <p class="hero-tagline">Building AI-powered tools that actually ship.<br>From concept to execution — fast.</p>
             <div class="hero-ctas">
                 <a href="ai-lab" class="btn btn-white">Explore AI Lab</a>
                 <a href="projects" class="btn btn-outline">All Projects</a>
@@ -170,23 +170,6 @@
         </div>
     </footer>
     <script>
-    // ── Typewriter ──
-    (function () {
-        const el = document.getElementById('typewriter-text');
-        if (!el) return;
-        const phrases = ['AI-powered tools', 'autonomous systems', 'cloud-native APIs', 'agentic workflows', 'full-stack products'];
-        let pi = 0, ci = 0, deleting = false;
-        function tick() {
-            const phrase = phrases[pi];
-            el.textContent = deleting ? phrase.slice(0, ci--) : phrase.slice(0, ci++);
-            let delay = deleting ? 40 : 75;
-            if (!deleting && ci > phrase.length) { delay = 2000; deleting = true; }
-            else if (deleting && ci < 0) { deleting = false; ci = 0; pi = (pi + 1) % phrases.length; delay = 400; }
-            setTimeout(tick, delay);
-        }
-        tick();
-    })();
-
     // ── GitHub Activity Feed ──
     (function () {
         const feed = document.getElementById('activity-feed');
