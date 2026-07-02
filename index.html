@@ -20,13 +20,24 @@
         <div class="container">
             <span class="hero-label">AI Builder · Full-Stack Developer</span>
             <h1>Yogeash Nehra</h1>
-            <p class="hero-tagline">Building AI-powered tools that actually ship.<br>From concept to execution — fast.</p>
+            <p class="hero-tagline">Building <span id="typewriter-text" class="typewriter-word"></span> that actually ship.<br>From concept to execution — fast.</p>
             <div class="hero-ctas">
                 <a href="ai-lab" class="btn btn-white">Explore AI Lab</a>
                 <a href="projects" class="btn btn-outline">All Projects</a>
             </div>
         </div>
     </header>
+
+    <!-- Live Activity -->
+    <section class="section-activity">
+        <div class="container">
+            <div class="section-header">
+                <h2>Recent Activity</h2>
+                <span class="section-link" id="activity-status">Loading from GitHub…</span>
+            </div>
+            <div class="activity-feed" id="activity-feed"></div>
+        </div>
+    </section>
 
     <!-- Featured AI Work -->
     <section class="section-featured">
@@ -118,6 +129,33 @@
         </div>
     </section>
 
+    <!-- Chat Widget -->
+    <div class="chat-widget" id="chat-widget">
+        <div class="chat-panel" id="chat-panel">
+            <div class="chat-header">
+                <div class="chat-header-info">
+                    <h4>Ask about my work</h4>
+                    <p>AI assistant · answers about Yogeash</p>
+                </div>
+                <button class="chat-close" id="chat-close" aria-label="Close">✕</button>
+            </div>
+            <div class="chat-messages" id="chat-messages">
+                <div class="chat-message assistant">Hey — ask me anything about Yogeash's work, stack, or projects.</div>
+            </div>
+            <div class="chat-suggestions" id="chat-suggestions">
+                <button class="chat-suggestion">What's your stack?</button>
+                <button class="chat-suggestion">Open to work?</button>
+                <button class="chat-suggestion">Tell me about Idea Lab</button>
+                <button class="chat-suggestion">What are you building?</button>
+            </div>
+            <div class="chat-input-row">
+                <input class="chat-input" id="chat-input" type="text" placeholder="Ask anything…" maxlength="300" autocomplete="off">
+                <button class="chat-send" id="chat-send" aria-label="Send">→</button>
+            </div>
+        </div>
+        <button class="chat-btn" id="chat-btn" aria-label="Ask about my work">✦</button>
+    </div>
+
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -131,5 +169,129 @@
             </div>
         </div>
     </footer>
+    <script>
+    // ── Typewriter ──
+    (function () {
+        const el = document.getElementById('typewriter-text');
+        if (!el) return;
+        const phrases = ['AI-powered tools', 'autonomous systems', 'cloud-native APIs', 'agentic workflows', 'full-stack products'];
+        let pi = 0, ci = 0, deleting = false;
+        function tick() {
+            const phrase = phrases[pi];
+            el.textContent = deleting ? phrase.slice(0, ci--) : phrase.slice(0, ci++);
+            let delay = deleting ? 40 : 75;
+            if (!deleting && ci > phrase.length) { delay = 2000; deleting = true; }
+            else if (deleting && ci < 0) { deleting = false; ci = 0; pi = (pi + 1) % phrases.length; delay = 400; }
+            setTimeout(tick, delay);
+        }
+        tick();
+    })();
+
+    // ── GitHub Activity Feed ──
+    (function () {
+        const feed = document.getElementById('activity-feed');
+        const status = document.getElementById('activity-status');
+        if (!feed) return;
+
+        function timeAgo(iso) {
+            const secs = Math.floor((Date.now() - new Date(iso)) / 1000);
+            if (secs < 60) return 'just now';
+            if (secs < 3600) return Math.floor(secs / 60) + 'm ago';
+            if (secs < 86400) return Math.floor(secs / 3600) + 'h ago';
+            return Math.floor(secs / 86400) + 'd ago';
+        }
+
+        function shortRepo(name) {
+            return name.replace('yogeash-nehra/', '');
+        }
+
+        fetch('https://api.github.com/users/yogeash-nehra/events/public?per_page=30')
+            .then(r => r.json())
+            .then(events => {
+                const pushes = events.filter(e => e.type === 'PushEvent' && e.payload.commits && e.payload.commits.length > 0).slice(0, 5);
+                if (!pushes.length) {
+                    feed.innerHTML = '<p class="activity-empty">No recent public activity.</p>';
+                    status.textContent = 'GitHub';
+                    return;
+                }
+                status.textContent = 'Live from GitHub';
+                feed.innerHTML = pushes.map(e => {
+                    const msg = e.payload.commits[e.payload.commits.length - 1].message.split('\n')[0];
+                    return `<div class="activity-item">
+                        <span class="activity-dot"></span>
+                        <div class="activity-body">
+                            <span class="activity-repo">${shortRepo(e.repo.name)}</span>
+                            <span class="activity-msg">${msg}</span>
+                        </div>
+                        <span class="activity-time">${timeAgo(e.created_at)}</span>
+                    </div>`;
+                }).join('');
+            })
+            .catch(() => {
+                feed.innerHTML = '<p class="activity-empty">Could not load activity.</p>';
+                status.textContent = 'GitHub';
+            });
+    })();
+
+    // ── Chat Widget ──
+    (function () {
+        const btn = document.getElementById('chat-btn');
+        const panel = document.getElementById('chat-panel');
+        const closeBtn = document.getElementById('chat-close');
+        const messages = document.getElementById('chat-messages');
+        const input = document.getElementById('chat-input');
+        const send = document.getElementById('chat-send');
+        const suggestions = document.getElementById('chat-suggestions');
+        if (!btn || !panel) return;
+
+        btn.addEventListener('click', () => {
+            panel.classList.toggle('open');
+            if (panel.classList.contains('open')) input.focus();
+        });
+        closeBtn.addEventListener('click', () => panel.classList.remove('open'));
+
+        function addMessage(role, text) {
+            const div = document.createElement('div');
+            div.className = 'chat-message ' + role;
+            div.textContent = text;
+            messages.appendChild(div);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function setLoading(loading) {
+            send.disabled = loading;
+            input.disabled = loading;
+            send.textContent = loading ? '…' : '→';
+        }
+
+        async function ask(question) {
+            if (!question.trim()) return;
+            if (suggestions) suggestions.style.display = 'none';
+            addMessage('user', question);
+            input.value = '';
+            setLoading(true);
+            try {
+                const res = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: question })
+                });
+                const data = await res.json();
+                const reply = data.content && data.content[0] ? data.content[0].text : 'Something went wrong — try again.';
+                addMessage('assistant', reply);
+            } catch {
+                addMessage('assistant', 'Could not reach the server — try again.');
+            }
+            setLoading(false);
+            input.focus();
+        }
+
+        send.addEventListener('click', () => ask(input.value));
+        input.addEventListener('keydown', e => { if (e.key === 'Enter') ask(input.value); });
+        document.querySelectorAll('.chat-suggestion').forEach(s => {
+            s.addEventListener('click', () => ask(s.textContent));
+        });
+    })();
+    </script>
 </body>
 </html>
