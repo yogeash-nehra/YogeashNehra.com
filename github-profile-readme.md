@@ -1,5 +1,4 @@
 <h1 align="center">Yogeash Nehra</h1>
-<h3 align="center">Full-stack developer — React · .NET/C# · Python · AWS/Azure · Applied AI</h3>
 
 <p align="center">
   <a href="https://yogeashnehra.com"><img src="https://img.shields.io/badge/Portfolio-yogeashnehra.com-000000?style=flat-square&logo=vercel&logoColor=white" alt="Portfolio"></a>
@@ -47,27 +46,25 @@
 
 ### Projects
 
-**PiLot — Autonomous UGV**
-`Python` `AWS EC2` `DynamoDB` `HTML/CSS/JS`
-Real-time telemetry pipeline for an autonomous rover — sensor data ingestion, obstacle-detection signals, and cloud storage feeding a live-monitoring dashboard.
-[capstone.html](https://yogeashnehra.com/capstone)
-
-**Idea Lab**
-`Claude API` `OpenAI API` `JavaScript` `Vercel`
-Client-side tool that scores project feasibility and generates an execution plan and repo scaffold from a text prompt. Multi-model, bring-your-own-key, nothing server-side.
-[idea.html](https://yogeashnehra.com/ai-lab)
+**Idea Lab** — [idea.html](https://yogeashnehra.com/ai-lab)
+`JavaScript` `Claude API` `OpenAI API` `Vercel`
+Takes a raw idea, runs it through Claude or GPT-4o, and returns a feasibility score, a phased execution plan, and a downloadable repo scaffold. Bring-your-own-key, entirely client-side — no backend to hold or leak a key. Live and still maintained.
 
 **Agentic Bug Fixer**
-`Python` `Static analysis` `Agentic workflows`
-Internal tool that analyses bug reports against enterprise codebases and automates issue triage and fix-pattern suggestions.
+`Python` `Agentic workflows` `Static analysis`
+An agent built at Aderant that reads a bug report, walks the relevant enterprise codebase, and proposes a fix pattern instead of a developer starting from a blank cursor. Built for reuse across codebases, not a one-off script.
 
 **EduEqual**
 `AWS Lambda` `Bedrock` `API Gateway`
-Serverless GenAI chatbot — built end-to-end in 24 hours at an AWS hackathon.
+Serverless chatbot built end-to-end in a 24-hour AWS hackathon — Lambda behind API Gateway, Bedrock for the model layer. Optimised for shipping something working and demoable in the time box.
 
 **Rental App**
 `Java` `Firebase` `Android`
-Full-stack Android app with Firebase auth, role-based access control, and rental/booking logic.
+Full-stack Android app: Firebase Auth, role-based access for owners vs. renters, and booking/availability logic against Firebase Realtime Database.
+
+**PiLot — Autonomous Rover** — [capstone.html](https://yogeashnehra.com/capstone)
+`Python` `AWS EC2` `DynamoDB`
+Earlier capstone work — real-time telemetry off an autonomous rover (sensor data, obstacle signals) pushed through EC2/DynamoDB to a live dashboard. More systems/hardware-integration than the full-stack work above, but where a lot of the debugging-under-pressure habits started.
 
 Full list: [yogeashnehra.com/projects](https://yogeashnehra.com/projects)
 
