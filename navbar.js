@@ -14,6 +14,7 @@
       <li><a href="ai-lab.html"        class="nav-item" data-page="ai-lab">AI Lab</a></li>
       <li><a href="stack.html"         class="nav-item" data-page="stack">Stack</a></li>
       <li><a href="projects.html"      class="nav-item" data-page="projects">Projects</a></li>
+      <li><a href="/live"              class="nav-item" data-page="live">Live</a></li>
       <li><a href="resume.html"        class="nav-item" data-page="resume">Resume</a></li>
       <li><a href="https://www.linkedin.com/in/yogeash-nehra/" class="nav-item">Contact</a></li>
     </ul>
