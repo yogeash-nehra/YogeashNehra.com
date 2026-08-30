@@ -9,9 +9,11 @@
   --panel:#111722; --panel2:#161E2A; --panel3:#1B2431;
   --line:#1E2734; --line2:#2A3542;
   --tx:#EBF1F8; --dim:#93A2B4; --mute:#5E6B7C;
-  --acc:#00E5B0; --acc2:#28F0C0; --acc-dim:rgba(0,229,176,.14); --acc-line:rgba(0,229,176,.32);
-  --glow:rgba(0,229,176,.10);
-  --ink:#04231b; /* text on mint */
+  /* near-monochrome: the "accent" is a soft off-white, not a colour.
+     Colour on the site comes from content, not chrome. */
+  --acc:#E7ECF2; --acc2:#FFFFFF; --acc-dim:rgba(231,236,242,.09); --acc-line:rgba(231,236,242,.26);
+  --glow:rgba(255,255,255,.025);
+  --ink:#0A0D12; /* dark text on the light accent (buttons, pills) */
   --panel-grad:linear-gradient(180deg,var(--panel),var(--bg2));
 }
 
@@ -231,7 +233,7 @@ h1, h2, h3 {
   background: var(--acc);
   color: var(--ink);
   margin: 0.3rem 0.2rem;
-  box-shadow: 0 8px 24px -12px rgba(0,229,176,0.6);
+  box-shadow: 0 6px 18px -12px rgba(0,0,0,0.7);
   transition: background 0.2s, color 0.2s, transform 0.2s;
   border: 1px solid var(--acc);
   outline: none;
@@ -490,7 +492,7 @@ body, html {
   background: var(--acc);
   color: var(--ink);
   border: 1.5px solid var(--acc);
-  box-shadow: 0 8px 24px -12px rgba(0,229,176,0.6);
+  box-shadow: 0 6px 18px -12px rgba(0,0,0,0.7);
   transition: background 0.2s, color 0.2s, transform 0.2s;
 }
 
@@ -1146,7 +1148,6 @@ section.section-about p {
     height: 7px;
     border-radius: 50%;
     background: var(--acc);
-    box-shadow: 0 0 8px var(--acc-line);
     flex-shrink: 0;
 }
 
@@ -1204,7 +1205,7 @@ section.section-about p {
     color: var(--ink);
     border: none;
     cursor: pointer;
-    box-shadow: 0 8px 28px -6px rgba(0,229,176,0.5);
+    box-shadow: 0 8px 24px -8px rgba(0,0,0,0.7);
     transition: transform 0.2s, box-shadow 0.2s;
     display: flex;
     align-items: center;
@@ -1215,7 +1216,7 @@ section.section-about p {
 
 .chat-btn:hover {
     transform: scale(1.08);
-    box-shadow: 0 12px 36px -6px rgba(0,229,176,0.6);
+    box-shadow: 0 12px 32px -8px rgba(0,0,0,0.8);
 }
 
 .chat-panel {
