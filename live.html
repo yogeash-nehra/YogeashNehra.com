@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Live Projects | Yogeash Nehra</title>
+<meta name="description" content="A live, self-updating command center of Yogeash Nehra's projects and GitHub repositories.">
+<link rel="icon" href="ynfavicon.ico">
+<style>
+/* =====================================================================
+   Dark command-center theme. Anchored to the site's black navbar.
+   Font: system (Segoe UI) — same as yogeashnehra.com. One accent: mint.
+   ===================================================================== */
+:root{
+  --bg:#0A0D12; --bg2:#0D1118;
+  --panel:#111722; --panel2:#161E2A; --panel3:#1B2431;
+  --line:#1E2734; --line2:#2A3542;
+  --tx:#EBF1F8; --dim:#93A2B4; --mute:#5E6B7C;
+  --acc:#E7ECF2; --acc2:#FFFFFF; --acc-dim:rgba(231,236,242,.09); --acc-line:rgba(231,236,242,.26);
+  --glow:rgba(255,255,255,.025);
+}
+*{box-sizing:border-box}
+body,html{
+  font-family:'Segoe UI', Arial, sans-serif; background:var(--bg); color:var(--tx);
+  margin:0; min-height:100%; -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  background-image:radial-gradient(900px 460px at 82% -10%, var(--glow), transparent 68%);
+  background-attachment:fixed;
+}
+.container{max-width:1180px; margin:0 auto; padding:0 1.3rem}
+h1,h2,h3,h4{margin:0; font-weight:800; color:var(--tx); letter-spacing:-.01em}
+a{color:inherit}
+.mono{font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace}
+.tnum{font-variant-numeric:tabular-nums}
+
+/* navbar (site's black bar) */
+.navbar{background:#000; padding:.9rem 0; position:sticky; top:0; z-index:1000; border-bottom:1px solid #14181f}
+.navbar .container{display:flex; justify-content:space-between; align-items:center; min-height:62px}
+.nav-brand{font-size:1.12rem; font-weight:800; color:#fff; text-decoration:none}
+.nav-links{display:flex; gap:.5rem; align-items:center; margin:0; padding:0; list-style:none}
+.nav-item{font-size:.98rem; font-weight:500; color:#cfd6df; text-decoration:none; padding:.45rem 1rem; border-radius:18px; transition:.18s}
+.nav-item:hover{color:#fff; background:#161616}
+.nav-item.active{background:var(--acc); color:#0A0D12; font-weight:700}
+
+/* header */
+.hero{display:flex; justify-content:space-between; align-items:flex-end; gap:1.2rem; flex-wrap:wrap; padding:2.4rem 0 1.4rem}
+.hero .eyebrow{display:inline-flex; align-items:center; gap:.55rem; font-size:.72rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--mute)}
+.hero .eyebrow b{color:var(--acc); font-weight:700}
+.hero h1{font-size:clamp(2rem,5vw,3.1rem); line-height:1; margin:.55rem 0 .5rem}
+.hero p{color:var(--dim); max-width:52ch; font-size:1rem; line-height:1.55; margin:0}
+.livebadge{display:inline-flex; align-items:center; gap:.55rem; padding:.5rem 1rem; border-radius:999px; border:1px solid var(--line2); background:var(--panel); font-size:.76rem; font-weight:600; letter-spacing:.02em; color:var(--dim); white-space:nowrap}
+.livebadge .d{width:8px; height:8px; border-radius:50%; background:var(--mute); flex:none}
+.livebadge.live{border-color:var(--acc-line); color:var(--acc)}
+.livebadge.live .d{background:var(--acc); box-shadow:0 0 0 0 var(--acc); animation:pulse 2.2s ease-out infinite}
+.livebadge.snap .d{background:var(--dim)}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(231,236,242,.4)}70%{box-shadow:0 0 0 7px rgba(231,236,242,0)}100%{box-shadow:0 0 0 0 rgba(231,236,242,0)}}
+
+/* KPI strip */
+.kpis{display:grid; grid-template-columns:repeat(4,1fr); gap:.9rem; margin:.4rem 0 1.4rem}
+.kpi{position:relative; padding:1.1rem 1.2rem 1.15rem; border:1px solid var(--line); border-radius:14px; background:linear-gradient(180deg,var(--panel),var(--bg2)); overflow:hidden; transition:border-color .2s, transform .2s}
+.kpi:hover{border-color:var(--acc-line); transform:translateY(-2px)}
+.kpi::before{content:""; position:absolute; left:0; top:14px; bottom:14px; width:3px; border-radius:3px; background:var(--acc); opacity:.75}
+.kpi-main{display:flex; align-items:flex-end; justify-content:space-between; gap:.6rem}
+.kpi .n{font-size:2.55rem; font-weight:800; line-height:.95; color:#fff; letter-spacing:-.02em}
+.kpi .l{margin-top:.55rem; font-size:.68rem; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:var(--dim)}
+.kpi .s{margin-top:.12rem; font-size:.74rem; color:var(--mute)}
+.spark{display:flex; align-items:flex-end; gap:3px; height:38px; padding-bottom:3px}
+.spark i{width:6px; border-radius:2px; background:var(--acc); min-height:4px; transition:height .5s cubic-bezier(.2,.7,.3,1)}
+.spark i.dim{background:var(--line2); box-shadow:none}
+
+/* panels / viz */
+.viz-grid{display:grid; grid-template-columns:1.05fr 1.35fr; gap:.9rem; margin-bottom:1.4rem}
+.panel{border:1px solid var(--line); border-radius:16px; background:linear-gradient(180deg,var(--panel),var(--bg2)); padding:1.35rem; display:flex; flex-direction:column}
+.panel h4{font-size:.95rem}
+.panel .cap{font-size:.76rem; color:var(--mute); margin:.2rem 0 1.1rem; line-height:1.45}
+.panel .cap b{color:var(--acc); font-weight:600}
+
+/* donut */
+.donut-wrap{display:flex; gap:1.3rem; align-items:center; flex-wrap:wrap}
+.donut{position:relative; width:168px; height:168px; flex:none; margin:0 auto}
+.donut svg{transform:rotate(-90deg); display:block}
+.donut .center{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; pointer-events:none}
+.donut .center .big{font-size:2rem; font-weight:800; line-height:1; color:#fff}
+.donut .center .sm{font-size:.62rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--mute); margin-top:.25rem}
+.donut circle.seg{transition:opacity .18s; cursor:pointer}
+.donut circle.seg:hover{opacity:.75}
+.legend{display:flex; flex-direction:column; gap:.15rem; flex:1; min-width:150px}
+.legend .li{display:flex; align-items:center; gap:.6rem; font-size:.9rem; cursor:pointer; padding:.32rem .4rem; border-radius:9px; transition:.15s}
+.legend .li:hover{background:var(--panel3)}
+.legend .li.other{cursor:default}
+.legend .li.other:hover{background:transparent}
+.legend .sw{width:11px; height:11px; border-radius:3px; flex:none}
+.legend .nm{color:var(--tx); font-weight:600}
+.legend .vs{margin-left:auto; color:var(--dim); font-variant-numeric:tabular-nums; font-size:.82rem}
+.legend .vs b{color:#fff; font-weight:700}
+/* status distribution bar */
+.sbwrap{margin-top:auto; padding-top:1.3rem; border-top:1px solid var(--line)}
+.donut-wrap{padding:.6rem 0 .3rem}
+.sb-label{font-size:.62rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--mute); margin-bottom:.6rem}
+.statusbar{display:flex; height:14px; gap:2px}
+.statusbar .seg{height:100%; cursor:pointer; transition:opacity .15s, transform .12s; border-radius:3px}
+.statusbar .seg:hover{opacity:.82; transform:scaleY(1.15)}
+.sb-legend{display:flex; gap:1.1rem; flex-wrap:wrap; margin-top:.75rem}
+.sb-legend .i{display:inline-flex; align-items:center; gap:.4rem; font-size:.8rem; color:var(--dim); cursor:pointer; transition:.15s}
+.sb-legend .i:hover{color:var(--tx)}
+.sb-legend .i .d{width:9px; height:9px; border-radius:3px; flex:none}
+.sb-legend .i b{color:#fff; font-weight:700; font-variant-numeric:tabular-nums}
+
+/* heatmap */
+.heat{display:grid; gap:4px; overflow-x:auto}
+.heat .hh{font-size:.6rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--mute); text-align:center; padding-bottom:.25rem; white-space:nowrap}
+.heat .rl{font-size:.82rem; color:var(--dim); font-weight:600; display:flex; align-items:center; padding-right:.55rem; white-space:nowrap}
+.heat .cell{height:58px; min-width:34px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:.9rem; font-weight:800; font-variant-numeric:tabular-nums; cursor:pointer; transition:transform .12s; border:1px solid rgba(255,255,255,.03)}
+.heat .rl{height:58px}
+.heat .cell:hover{transform:scale(1.08); outline:2px solid var(--acc); outline-offset:-1px; z-index:2}
+.heat .cell.z{cursor:default}
+.heat .cell.z:hover{transform:none; outline:none}
+.heat-legend{display:flex; align-items:center; gap:.5rem; margin-top:.95rem; font-size:.72rem; color:var(--mute)}
+.heat-legend .scale{display:flex; gap:2px}
+.heat-legend .scale i{width:17px; height:11px; border-radius:3px; display:block}
+
+/* controls */
+.controls{margin:.4rem 0 .3rem}
+.ctl-row{display:flex; gap:.7rem; flex-wrap:wrap; align-items:center}
+.search{position:relative; flex:1 1 260px; min-width:200px}
+.search input{width:100%; padding:.72rem 1rem .72rem 2.5rem; border:1px solid var(--line2); border-radius:12px; font-family:inherit; font-size:.95rem; color:var(--tx); background:var(--panel)}
+.search input::placeholder{color:var(--mute)}
+.search input:focus{outline:none; border-color:var(--acc-line); box-shadow:0 0 0 3px var(--acc-dim)}
+.search svg{position:absolute; left:.9rem; top:50%; transform:translateY(-50%); width:16px; height:16px; color:var(--mute)}
+select.sort{appearance:none; padding:.72rem 2.3rem .72rem 1rem; border:1px solid var(--line2); border-radius:12px; font-family:inherit; font-size:.92rem; color:var(--tx); background:var(--panel) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2393A2B4' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 1rem center; cursor:pointer}
+select.sort:focus{outline:none; border-color:var(--acc-line)}
+.chips{display:flex; gap:.5rem; flex-wrap:wrap; margin-top:.75rem; align-items:center}
+.chips-label{font-size:.64rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--mute); margin-right:.1rem}
+.chip{display:inline-flex; align-items:center; gap:.4rem; padding:.4rem .9rem; border:1px solid var(--line2); border-radius:18px; background:var(--panel); color:var(--dim); font-family:inherit; font-size:.83rem; font-weight:500; cursor:pointer; transition:.16s; user-select:none}
+.chip:hover{border-color:var(--acc-line); color:var(--tx)}
+.chip.on{background:var(--acc); border-color:var(--acc); color:#0A0D12; font-weight:700}
+.chip .cnt{opacity:.6; font-size:.76rem; font-variant-numeric:tabular-nums}
+.chip.on .cnt{opacity:.75; color:#0A0D12}
+
+/* section heads */
+.sec-head{display:flex; align-items:center; gap:.9rem; margin:2rem 0 1.1rem}
+.sec-head h2{font-size:1.3rem}
+.sec-head .rule{flex:1; height:1px; background:linear-gradient(90deg,var(--line2),transparent)}
+.sec-head .n{font-size:.78rem; color:var(--mute); font-weight:600; letter-spacing:.02em; white-space:nowrap}
+
+/* cards */
+.featured-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:.9rem}
+.ailab-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(270px,1fr)); gap:.9rem}
+.card{position:relative; display:flex; flex-direction:column; gap:.7rem; padding:1.3rem; border:1px solid var(--line); border-radius:15px; background:linear-gradient(180deg,var(--panel),var(--bg2)); transition:border-color .2s, transform .2s, box-shadow .2s; overflow:hidden}
+.card::after{content:""; position:absolute; inset:0; border-radius:15px; pointer-events:none; background:radial-gradient(340px 130px at 100% 0%, var(--acc-dim), transparent 60%); opacity:0; transition:opacity .25s}
+.card:hover{border-color:var(--acc-line); transform:translateY(-4px); box-shadow:0 18px 40px -18px rgba(0,0,0,.8)}
+.card:hover::after{opacity:1}
+.card.feat{border-color:var(--line2)}
+.card-top{display:flex; align-items:flex-start; justify-content:space-between; gap:.7rem; position:relative; z-index:1}
+.card h3{text-align:left; font-size:1.14rem; line-height:1.25; font-weight:700}
+.card-repo{font-size:.74rem; color:var(--mute); margin-top:.2rem; font-family:ui-monospace,Menlo,monospace}
+.card p{margin:0; flex:1; font-size:.92rem; color:var(--dim); line-height:1.55; position:relative; z-index:1}
+.tech-row{display:flex; gap:.35rem; flex-wrap:wrap; position:relative; z-index:1}
+.tech{font-size:.7rem; font-weight:600; color:var(--dim); background:var(--panel3); border:1px solid var(--line); padding:.2rem .55rem; border-radius:8px}
+.card-foot{display:flex; align-items:center; justify-content:space-between; gap:.7rem; flex-wrap:wrap; margin-top:auto; padding-top:.7rem; border-top:1px solid var(--line); position:relative; z-index:1}
+.meta{display:flex; align-items:center; gap:.85rem; font-size:.8rem; color:var(--mute); flex-wrap:wrap; font-variant-numeric:tabular-nums}
+.meta span{display:inline-flex; align-items:center; gap:.3rem}
+.meta svg{width:13px; height:13px; color:var(--mute)}
+.card-actions{display:flex; gap:.4rem; flex-wrap:wrap}
+
+/* buttons */
+.btn{display:inline-flex; align-items:center; gap:.35rem; padding:.5rem 1rem; border-radius:20px; font-weight:700; font-size:.85rem; background:#EAF1F8; color:#0A0D12; text-decoration:none; border:1px solid #EAF1F8; cursor:pointer; transition:.18s}
+.btn:hover{transform:translateY(-1px); background:#fff}
+.btn--accent{background:var(--acc); border-color:var(--acc); color:#0A0D12}
+.btn--accent:hover{background:var(--acc2); border-color:var(--acc2)}
+.btn-outline{background:transparent; color:var(--dim); border:1px solid var(--line2)}
+.btn-outline:hover{color:var(--acc); border-color:var(--acc-line); transform:translateY(-1px)}
+
+/* status tags */
+.tag{display:inline-flex; align-items:center; gap:.4rem; font-size:.64rem; font-weight:700; letter-spacing:.09em; text-transform:uppercase; padding:.3rem .65rem; border-radius:16px; white-space:nowrap; border:1px solid transparent}
+.tag--building{background:var(--acc); color:#0A0D12}
+.tag--building .sd{width:6px; height:6px; border-radius:50%; background:#0A0D12; animation:pulse2 1.7s ease-out infinite}
+@keyframes pulse2{0%{box-shadow:0 0 0 0 rgba(10,13,18,.5)}70%{box-shadow:0 0 0 5px rgba(10,13,18,0)}100%{box-shadow:0 0 0 0 rgba(10,13,18,0)}}
+.tag--activest{background:transparent; color:var(--acc); border-color:var(--acc-line)}
+.tag--maintained{background:var(--panel3); color:var(--dim); border-color:var(--line2)}
+.tag--archived{background:transparent; color:var(--mute); border-color:var(--line)}
+
+.empty{grid-column:1/-1; text-align:center; padding:3rem; color:var(--mute)}
+.notice{margin-top:1.3rem; padding:.95rem 1.2rem; border:1px solid var(--line2); border-radius:13px; background:var(--panel); color:var(--dim); font-size:.88rem; line-height:1.5}
+.notice code{background:var(--panel3); padding:.1rem .45rem; border-radius:5px; font-size:.83rem; color:var(--acc)}
+footer.foot{margin-top:3rem; padding:1.8rem 0; border-top:1px solid var(--line); text-align:center; color:var(--mute); font-size:.85rem}
+footer.foot a{color:var(--dim); text-decoration:none; font-weight:600}
+footer.foot a:hover{color:var(--acc)}
+
+@media (max-width:900px){ .viz-grid{grid-template-columns:1fr} }
+@media (max-width:820px){ .featured-grid{grid-template-columns:1fr} .kpis{grid-template-columns:repeat(2,1fr)} .hero{align-items:flex-start} }
+@media (prefers-reduced-motion:reduce){ *{animation:none !important; transition:none !important} }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container">
+    <a href="https://www.yogeashnehra.com" class="nav-brand">Yogeash Nehra</a>
+    <ul class="nav-links">
+      <li><a class="nav-item" href="/">Home</a></li>
+      <li><a class="nav-item" href="/projects">Projects</a></li>
+      <li><a class="nav-item active" href="/live">Live</a></li>
+      <li><a class="nav-item" href="https://github.com/yogeash-nehra" target="_blank" rel="noopener">GitHub</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+
+  <header class="hero">
+    <div>
+      <span class="eyebrow">Project command center · <b>github/yogeash-nehra</b></span>
+      <h1>Live Projects</h1>
+      <p>Everything I'm building and have shipped — pulled straight from GitHub and updated on its own as I push.</p>
+    </div>
+    <div id="sync" class="livebadge"><span class="d"></span><span id="syncTxt">loading…</span></div>
+  </header>
+
+  <section class="kpis" id="kpis"></section>
+
+  <section class="viz-grid">
+    <div class="panel">
+      <h4>Languages</h4>
+      <div class="cap">Share of repositories by primary language — <b>click to filter</b></div>
+      <div class="donut-wrap"><div class="donut" id="donut"></div><div class="legend" id="legend"></div></div>
+      <div class="sbwrap">
+        <div class="sb-label">By status</div>
+        <div class="statusbar" id="statusbar"></div>
+        <div class="sb-legend" id="sbLegend"></div>
+      </div>
+    </div>
+    <div class="panel">
+      <h4>Portfolio map</h4>
+      <div class="cap">Repositories by language &amp; status — <b>click a cell to filter</b></div>
+      <div class="heat" id="heat"></div>
+      <div class="heat-legend"><span>fewer</span><div class="scale" id="heatScale"></div><span>more</span></div>
+    </div>
+  </section>
+
+  <div class="controls">
+    <div class="ctl-row">
+      <label class="search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="m21 21-4.3-4.3"></path></svg>
+        <input id="search" type="search" placeholder="Search projects, tech, keywords…" autocomplete="off" aria-label="Search projects">
+      </label>
+      <select class="sort" id="sort" aria-label="Sort projects">
+        <option value="recent">Recently active</option>
+        <option value="stars">Most stars</option>
+        <option value="name">A – Z</option>
+        <option value="status">By status</option>
+      </select>
+    </div>
+    <div class="chips" id="statusChips" role="group" aria-label="Filter by status"><span class="chips-label">Status</span></div>
+    <div class="chips" id="langChips" role="group" aria-label="Filter by language"><span class="chips-label">Stack</span></div>
+  </div>
+
+  <div class="sec-head"><h2>Featured</h2><span class="rule"></span><span class="n" id="featN"></span></div>
+  <section class="featured-grid" id="featured"></section>
+
+  <div class="sec-head"><h2>All repositories</h2><span class="rule"></span><span class="n" id="allN"></span></div>
+  <section class="ailab-grid" id="grid"></section>
+  <div id="notice"></div>
+
+  <footer class="foot">
+    <div>Yogeash Nehra — full-stack · mobile · cloud &amp; IoT</div>
+    <div style="margin-top:.4rem"><a href="https://github.com/yogeash-nehra" target="_blank" rel="noopener">github.com/yogeash-nehra</a> &nbsp;·&nbsp; <a href="https://www.yogeashnehra.com" target="_blank" rel="noopener">yogeashnehra.com</a></div>
+  </footer>
+</div>
+
+<script>
+const GH_USER="yogeash-nehra";
+const CURATED={
+  "aws-dashboard":               {feat:true,  title:"AWS IoT Telemetry Dashboard", blurb:"Real-time sensor telemetry from a smart-agriculture rover, streamed through AWS IoT Core and visualised as it arrives.", tags:["Python","AWS IoT","MQTT"], lang:"Python", status:"active"},
+  "attendance-system-assignment2":{feat:true, title:"Full-Stack Attendance Platform", blurb:"Role-based attendance and student analytics — a Django REST backend paired with a React front end.", tags:["Django REST","React"], lang:"Python", status:"active"},
+  "renteverything":              {feat:true,  title:"Rent Everything", blurb:"Peer-to-peer rental marketplace for Android — listings, bookings and auth backed by Firebase.", tags:["Java","Firebase","Android"], lang:"Java", status:"active"},
+  "hackathon":                   {feat:true,  title:"EduEqual", blurb:"Hackathon-built, AI-driven learning platform applying NLP on AWS to widen access to education.", tags:["AWS","NLP","Python"], lang:"Python", status:"maintained"},
+  "boardgame":                   {feat:true,  title:"Unity Board Game", blurb:"Turn-based board game in Unity with animated UI and tactical turn mechanics.", tags:["C#","Unity"], lang:"C#", status:"maintained"},
+  "yogeashnehra.com":            {feat:true,  title:"Portfolio Website", blurb:"This site — a clean, responsive personal portfolio built from scratch in vanilla HTML, CSS and JS.", tags:["HTML","CSS","JavaScript"], lang:"JavaScript", status:"building", live:"https://www.yogeashnehra.com"},
+  "quiz-app":                    {title:"Quiz App", blurb:"Trivia app pulling dynamic questions from Firebase Firestore.", tags:["Java","Firestore","Android"], lang:"Java", status:"maintained"},
+  "attendance-system-assignment":{title:"Attendance Tracker", blurb:"Frontend CRUD build — an early hands-on with state and the DOM.", tags:["JavaScript","CRUD"], lang:"JavaScript", status:"archived"},
+  "android-api-and-crud":        {title:"Android API & CRUD Demo", blurb:"Reference project for Retrofit networking and local database operations.", tags:["Java","Retrofit"], lang:"Java", status:"archived"},
+  "rent_everything":             {title:"Rent Everything (Prototype)", blurb:"Earlier iteration of the rental app — the groundwork for RentEverything.", tags:["Java","Firebase"], lang:"Java", status:"archived"},
+  "nodejs1":                     {title:"Node.js Fundamentals", blurb:"Server-side routing and middleware concepts, learned by building.", tags:["Node.js"], lang:"JavaScript", status:"archived"},
+  "eduequal-demo":               {title:"EduEqual — Demo", blurb:"Front-end presentation prototype for the EduEqual concept.", tags:["Web"], lang:"JavaScript", status:"maintained"},
+  "attendance-system-2024":      {title:"Attendance CLI", blurb:"Command-line attendance tool — a study in Python file handling.", tags:["Python","CLI"], lang:"Python", status:"archived"},
+  "radioonweb":                  {title:"Radio On Web", blurb:"Browser-based audio streaming application.", tags:["HTML5","JavaScript"], lang:"JavaScript", status:"maintained"},
+  "wgholdings":                  {title:"Wolfgramm Holdings", blurb:"Corporate site highlighting the company's services.", tags:["HTML","CSS","JavaScript"], lang:"JavaScript", status:"maintained"},
+  "yogeash_online":              {title:"Portfolio (Legacy)", blurb:"An earlier portfolio iteration — YogiNehra.online.", tags:["Web"], lang:"HTML", status:"archived"},
+  "assignment-2":                {title:"Web Dev Assignment", blurb:"Semantic layout and structure demonstration.", tags:["HTML","CSS"], lang:"HTML", status:"archived"},
+  "esports-event-management":    {title:"Esports Event Manager", blurb:"Tournament management desktop app with a MS Access data layer.", tags:["C#","WinForms"], lang:"C#", status:"maintained"},
+  "piha-lodge-booking---iscg6420-assignment1":{title:"Lodge Booking System", blurb:"Hospitality booking platform for a lodge.", tags:["HTML","CSS","JavaScript"], lang:"JavaScript", status:"maintained"}
+};
+const SNAPSHOT=Object.entries(CURATED).map(([name,c])=>({name,html_url:"https://github.com/"+GH_USER+"/"+name,description:c.blurb,language:c.lang,stargazers_count:null,forks_count:null,pushed_at:null,homepage:c.live||"",topics:[],archived:c.status==="archived",fork:false}));
+
+const RAMP=["#EBF1F8","#C4CDD9","#9AA6B5","#727E8D","#505B69","#39424E"]; // light → deep grey, by rank
+let LANG_SHADE={};
+const STATUS_ORDER={building:0,active:1,maintained:2,archived:3};
+const STATUS_LABEL={building:"Building",active:"Active",maintained:"Maintained",archived:"Archived"};
+const STATUS_CLASS={building:"tag--building",active:"tag--activest",maintained:"tag--maintained",archived:"tag--archived"};
+
+let ALL=[], SRC="snapshot";
+let filters={q:"",langs:new Set(),status:new Set()}, sortMode="recent";
+const esc=s=>(s==null?"":String(s)).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const $=s=>document.querySelector(s);
+
+function computeStatus(r){
+  const c=CURATED[r.name.toLowerCase()];
+  if(r.pushed_at){ if(r.archived)return"archived"; const d=(Date.now()-new Date(r.pushed_at))/8.64e7;
+    if(d<=45)return"building"; if(d<=210)return"active"; if(d<=540)return"maintained"; return"archived"; }
+  if(r.archived)return"archived"; return (c&&c.status)||"maintained";
+}
+function relTime(iso){ if(!iso)return"—"; const d=(Date.now()-new Date(iso))/1000,D=86400;
+  if(d<D)return"today"; if(d<2*D)return"yesterday"; if(d<30*D)return Math.round(d/D)+"d ago";
+  if(d<365*D)return Math.round(d/(30*D))+"mo ago"; const y=d/(365*D); return y<1.6?"1y ago":Math.round(y)+"y ago"; }
+function titleFor(r){ const c=CURATED[r.name.toLowerCase()]; return (c&&c.title)||r.name.replace(/[-_]/g," ").replace(/\b\w/g,m=>m.toUpperCase()); }
+function tagsFor(r){ const c=CURATED[r.name.toLowerCase()]; if(r.topics&&r.topics.length)return r.topics.slice(0,4); return (c&&c.tags)||(r.language?[r.language]:[]); }
+function tot(o){ return Object.values(o).reduce((a,b)=>a+b,0); }
+
+const ICON={
+  star:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>',
+  fork:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="4" r="2"/><circle cx="18" cy="4" r="2"/><circle cx="12" cy="20" r="2"/><path d="M6 6v4a4 4 0 0 0 4 4h4a4 4 0 0 0 4-4V6M12 14v4"/></svg>',
+  clock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+  ext:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>',
+  code:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg>'
+};
+function statusTag(st){ const inner= st==="building"?'<span class="sd"></span>'+STATUS_LABEL[st]:STATUS_LABEL[st]; return `<span class="tag ${STATUS_CLASS[st]}">${inner}</span>`; }
+
+async function load(){
+  try{
+    const res=await fetch(`https://api.github.com/users/${GH_USER}/repos?per_page=100&sort=pushed`,{headers:{Accept:"application/vnd.github+json"}});
+    if(!res.ok)throw 0; const data=await res.json(); if(!Array.isArray(data)||!data.length)throw 0;
+    const byName={}; data.forEach(r=>byName[r.name.toLowerCase()]=r);
+    Object.keys(CURATED).forEach(k=>{ if(!byName[k]){ const s=SNAPSHOT.find(x=>x.name.toLowerCase()===k); if(s)byName[k]=s; }});
+    ALL=Object.values(byName).map(normalize); SRC="live"; setSync("live",data.length);
+  }catch(e){ ALL=SNAPSHOT.map(normalize); SRC="snapshot"; setSync("snap"); }
+  buildChips(); renderKpis(); renderViz(); render();
+}
+function normalize(r){ const c=CURATED[r.name.toLowerCase()]||{};
+  return {name:r.name,url:r.html_url,title:titleFor(r),desc:(c.blurb||r.description||"No description provided."),
+    lang:r.language||c.lang||null,stars:(r.stargazers_count===undefined?null:r.stargazers_count),
+    forks:(r.forks_count===undefined?null:r.forks_count),pushed:r.pushed_at||null,live:r.homepage||c.live||"",
+    tags:tagsFor(r),archived:!!r.archived,fork:!!r.fork,feat:!!c.feat,status:computeStatus(r)}; }
+function setSync(mode,n){ const el=$("#sync"),t=$("#syncTxt"); el.className="livebadge "+(mode==="live"?"live":"snap");
+  t.textContent=mode==="live"?`Live · ${n} repos synced`:"Snapshot view"; }
+
+function buildChips(){
+  const sc=$("#statusChips"); sc.querySelectorAll(".chip").forEach(n=>n.remove());
+  const cnt={}; ALL.forEach(r=>cnt[r.status]=(cnt[r.status]||0)+1);
+  ["building","active","maintained","archived"].forEach(st=>{ if(!cnt[st])return;
+    const b=document.createElement("button"); b.className="chip"; b.dataset.st=st;
+    b.innerHTML=`${STATUS_LABEL[st]} <span class="cnt">${cnt[st]}</span>`;
+    b.onclick=()=>{ toggle(filters.status,st); syncChips(); render(); }; sc.appendChild(b); });
+  const lc=$("#langChips"); lc.querySelectorAll(".chip").forEach(n=>n.remove());
+  const lct={}; ALL.forEach(r=>{ if(r.lang)lct[r.lang]=(lct[r.lang]||0)+1; });
+  Object.entries(lct).sort((a,b)=>b[1]-a[1]).forEach(([l,n])=>{
+    const b=document.createElement("button"); b.className="chip"; b.dataset.l=l;
+    b.innerHTML=`${esc(l)} <span class="cnt">${n}</span>`;
+    b.onclick=()=>{ toggle(filters.langs,l); syncChips(); render(); }; lc.appendChild(b); });
+}
+function toggle(set,v){ set.has(v)?set.delete(v):set.add(v); }
+function syncChips(){
+  document.querySelectorAll('#statusChips .chip').forEach(b=>b.classList.toggle('on',filters.status.has(b.dataset.st)));
+  document.querySelectorAll('#langChips .chip').forEach(b=>b.classList.toggle('on',filters.langs.has(b.dataset.l)));
+  document.querySelectorAll('#legend .li').forEach(li=>li.style.opacity=(filters.langs.size&&!filters.langs.has(li.dataset.lang)&&li.dataset.lang!=="Other")?.4:1);
+}
+
+const STATUS_COLOR={building:"#EBF1F8",active:"#AEB9C7",maintained:"#687584",archived:"#3A4552"};
+function renderViz(){ renderDonut(); renderStatusBar(); renderHeat(); }
+function renderStatusBar(){
+  const order=["building","active","maintained","archived"];
+  const cnt={}; ALL.forEach(r=>cnt[r.status]=(cnt[r.status]||0)+1);
+  const shown=order.filter(s=>cnt[s]);
+  $("#statusbar").innerHTML=shown.map(s=>`<div class="seg" data-st="${s}" title="${STATUS_LABEL[s]} · ${cnt[s]}" style="flex:${cnt[s]};background:${STATUS_COLOR[s]}"></div>`).join("");
+  $("#sbLegend").innerHTML=shown.map(s=>`<div class="i" data-st="${s}"><span class="d" style="background:${STATUS_COLOR[s]}"></span>${STATUS_LABEL[s]} <b>${cnt[s]}</b></div>`).join("");
+  document.querySelectorAll('#statusbar .seg, #sbLegend .i').forEach(el=>{ el.onclick=()=>{ toggle(filters.status,el.dataset.st); syncChips(); render(); }; });
+}
+function renderDonut(){
+  const counts={}; ALL.forEach(r=>{ if(r.lang)counts[r.lang]=(counts[r.lang]||0)+1; });
+  let items=Object.entries(counts).sort((a,b)=>b[1]-a[1]);
+  const main=items.slice(0,6),rest=items.slice(6); if(rest.length)main.push(["Other",rest.reduce((a,b)=>a+b[1],0)]);
+  const total=main.reduce((a,b)=>a+b[1],0)||1;
+  LANG_SHADE={}; main.forEach(([l],i)=>LANG_SHADE[l]=RAMP[Math.min(i,RAMP.length-1)]);
+  const r=70,C=2*Math.PI*r,cx=84,cy=84,sw=24,gap=main.length>1?2.4:0; let off=0,segs="";
+  main.forEach(([l,n])=>{ const frac=n/total; let len=frac*C-gap; if(len<1)len=Math.max(frac*C,1);
+    segs+=`<circle class="seg" data-lang="${esc(l)}" r="${r}" cx="${cx}" cy="${cy}" fill="none" stroke="${LANG_SHADE[l]}" stroke-width="${sw}" stroke-dasharray="${len} ${C-len}" stroke-dashoffset="${-off}"><title>${esc(l)} · ${n} (${Math.round(n/total*100)}%)</title></circle>`;
+    off+=frac*C; });
+  $("#donut").innerHTML=`<svg viewBox="0 0 168 168" width="168" height="168">${segs}</svg><div class="center"><div class="big tnum">${ALL.length}</div><div class="sm">repos</div></div>`;
+  $("#legend").innerHTML=main.map(([l,n])=>`<div class="li${l==="Other"?" other":""}" data-lang="${esc(l)}"><span class="sw" style="background:${LANG_SHADE[l]}"></span><span class="nm">${esc(l)}</span><span class="vs"><b>${n}</b> · ${Math.round(n/total*100)}%</span></div>`).join("");
+  document.querySelectorAll('#donut .seg, #legend .li').forEach(el=>{ el.onclick=()=>{ const l=el.dataset.lang; if(l==="Other")return; toggle(filters.langs,l); syncChips(); render(); }; });
+}
+function renderHeat(){
+  const statuses=["building","active","maintained","archived"];
+  const counts={},langs=[];
+  ALL.forEach(r=>{ if(!r.lang)return; if(!counts[r.lang]){counts[r.lang]={};langs.push(r.lang);} counts[r.lang][r.status]=(counts[r.lang][r.status]||0)+1; });
+  langs.sort((a,b)=>tot(counts[b])-tot(counts[a]));
+  let max=0; langs.forEach(l=>statuses.forEach(s=>{ max=Math.max(max,counts[l][s]||0); })); max=max||1;
+  // dark panel -> soft white
+  const lerp=(a,b,t)=>Math.round(a+(b-a)*t);
+  const shade=v=>{ if(!v)return"#111823"; const t=Math.pow(v/max,.85);
+    return `rgb(${lerp(23,231,t)},${lerp(30,236,t)},${lerp(39,242,t)})`; };
+  const ink=v=> (!v?"#3a4655":(v/max>0.45?"#0A0D12":"#EBF1F8"));
+  const el=$("#heat"); el.style.gridTemplateColumns=`minmax(64px,auto) repeat(${statuses.length},minmax(34px,1fr))`;
+  let html=`<div class="hh" style="text-align:left"></div>`+statuses.map(s=>`<div class="hh">${STATUS_LABEL[s]}</div>`).join("");
+  langs.forEach(l=>{ html+=`<div class="rl">${esc(l)}</div>`;
+    statuses.forEach(s=>{ const v=counts[l][s]||0;
+      html+=`<div class="cell${v?"":" z"}" data-lang="${esc(l)}" data-status="${s}" title="${v} ${esc(l)} · ${STATUS_LABEL[s]}" style="background:${shade(v)};color:${ink(v)}">${v||""}</div>`; }); });
+  el.innerHTML=html;
+  document.querySelectorAll('#heat .cell:not(.z)').forEach(c=>{ c.onclick=()=>{ filters.langs.add(c.dataset.lang); filters.status.add(c.dataset.status); syncChips(); render(); }; });
+  $("#heatScale").innerHTML=[0,.3,.55,.8,1].map(t=>`<i style="background:${shade(t*max)}"></i>`).join("");
+}
+
+function passes(r){
+  if(filters.langs.size&&(!r.lang||!filters.langs.has(r.lang)))return false;
+  if(filters.status.size&&!filters.status.has(r.status))return false;
+  if(filters.q){ const q=filters.q.toLowerCase();
+    if(!(r.name+" "+r.title+" "+r.desc+" "+r.tags.join(" ")+" "+(r.lang||"")).toLowerCase().includes(q))return false; }
+  return true;
+}
+function sortRepos(list){ const s=[...list];
+  if(sortMode==="stars")s.sort((a,b)=>(b.stars||0)-(a.stars||0));
+  else if(sortMode==="name")s.sort((a,b)=>a.title.localeCompare(b.title));
+  else if(sortMode==="status")s.sort((a,b)=>STATUS_ORDER[a.status]-STATUS_ORDER[b.status]||(b.pushed?new Date(b.pushed):0)-(a.pushed?new Date(a.pushed):0));
+  else s.sort((a,b)=>(b.pushed?new Date(b.pushed).getTime():0)-(a.pushed?new Date(a.pushed).getTime():0)); return s; }
+function metaBits(r){ const b=[]; if(r.lang)b.push(`<span>${esc(r.lang)}</span>`);
+  if(r.stars!=null)b.push(`<span>${ICON.star}${r.stars}</span>`);
+  if(r.forks!=null&&r.forks>0)b.push(`<span>${ICON.fork}${r.forks}</span>`);
+  b.push(`<span>${ICON.clock}${relTime(r.pushed)}</span>`); return b.join(""); }
+function cardHTML(r,feat){
+  const tech=r.tags.slice(0,4).map(t=>`<span class="tech">${esc(t)}</span>`).join("");
+  const live=r.live?`<a class="btn btn--accent" href="${esc(r.live)}" target="_blank" rel="noopener">${ICON.ext}Live</a>`:"";
+  const code=`<a class="btn ${r.live?'btn-outline':''}" href="${esc(r.url)}" target="_blank" rel="noopener">${ICON.code}${r.live?'Code':'GitHub'}</a>`;
+  return `<article class="card${feat?' feat':''}">
+    <div class="card-top"><div style="min-width:0"><h3>${esc(r.title)}</h3><div class="card-repo">${esc(r.name)}</div></div>${statusTag(r.status)}</div>
+    <p>${esc(r.desc)}</p>
+    ${tech?`<div class="tech-row">${tech}</div>`:""}
+    <div class="card-foot"><div class="meta">${metaBits(r)}</div><div class="card-actions">${live}${code}</div></div>
+  </article>`;
+}
+function render(){
+  const feats=sortRepos(ALL.filter(r=>r.feat&&passes(r)));
+  const rest=sortRepos(ALL.filter(passes));
+  const fEl=$("#featured"),gEl=$("#grid"),fh=fEl.previousElementSibling;
+  if(feats.length){ fEl.style.display=""; if(fh)fh.style.display=""; fEl.innerHTML=feats.map(r=>cardHTML(r,true)).join(""); $("#featN").textContent=feats.length+" pinned"; }
+  else { fEl.style.display="none"; if(fh)fh.style.display="none"; }
+  gEl.innerHTML=rest.length?rest.map(r=>cardHTML(r,false)).join(""):`<div class="empty">No projects match these filters.</div>`;
+  $("#allN").textContent=rest.length+" of "+ALL.length;
+  $("#notice").innerHTML=SRC==="snapshot"?`<div class="notice">You're viewing the <strong>curated snapshot</strong>. Embedded on <code>yogeashnehra.com</code>, this page fetches your repositories live from GitHub, so everything updates on its own as you push.</div>`:"";
+}
+function renderKpis(){
+  const langCount={}; ALL.forEach(r=>{ if(r.lang)langCount[r.lang]=(langCount[r.lang]||0)+1; });
+  const langArr=Object.entries(langCount).sort((a,b)=>b[1]-a[1]);
+  const sc={building:0,active:0,maintained:0,archived:0}; ALL.forEach(r=>sc[r.status]++);
+  const techCount={}; ALL.forEach(r=>r.tags.forEach(t=>techCount[t]=(techCount[t]||0)+1));
+  const techArr=Object.entries(techCount).sort((a,b)=>b[1]-a[1]);
+  const stars=ALL.reduce((a,r)=>a+(r.stars||0),0), hasStars=ALL.some(r=>r.stars>0);
+  const featured=ALL.filter(r=>r.feat).length;
+  const active=sc.building+sc.active;
+
+  // fourth tile: show real stars when live & non-zero, else "Active now"
+  const fourth = hasStars
+    ? {n:stars, l:"Stars", s:"earned on GitHub", bars:[{v:sc.building},{v:sc.active},{v:sc.maintained},{v:sc.archived}]}
+    : {n:active, l:"Active now", s:"building + active", bars:[{v:Math.max(sc.building,.4),hot:1},{v:Math.max(sc.active,.4),hot:1},{v:sc.maintained,dim:1},{v:sc.archived,dim:1}]};
+
+  const tiles=[
+    {n:ALL.length, l:"Repositories", s:featured+" featured · live-synced", bars:[{v:sc.building},{v:sc.active},{v:sc.maintained},{v:sc.archived}]},
+    {n:techArr.length, l:"Technologies", s:"frameworks & tools", bars:techArr.slice(0,7).map(([,v])=>({v}))},
+    {n:langArr.length, l:"Languages", s:"polyglot stack", bars:langArr.slice(0,7).map(([,v])=>({v}))},
+    fourth
+  ];
+  const reduce=matchMedia("(prefers-reduced-motion:reduce)").matches;
+  $("#kpis").innerHTML=tiles.map(t=>{
+    const mx=Math.max(...t.bars.map(b=>b.v),1);
+    const bars=t.bars.map(b=>`<i class="${b.dim?'dim':''}" style="height:${reduce?Math.round(b.v/mx*100):0}%" data-h="${Math.max(14,Math.round(b.v/mx*100))}"></i>`).join("");
+    return `<div class="kpi"><div class="kpi-main"><div class="n tnum" data-target="${t.n}">${reduce?t.n:0}</div><div class="spark">${bars}</div></div><div class="l">${esc(t.l)}</div><div class="s">${esc(t.s)}</div></div>`;
+  }).join("");
+  if(reduce) return;
+  // animate: count-up numbers + grow bars
+  document.querySelectorAll("#kpis .kpi .n").forEach(el=>{
+    const target=+el.dataset.target; let cur=0; const step=Math.max(1,Math.ceil(target/22));
+    const t=setInterval(()=>{ cur+=step; if(cur>=target){cur=target;clearInterval(t);} el.textContent=cur; },26);
+  });
+  requestAnimationFrame(()=>document.querySelectorAll("#kpis .spark i").forEach((i,idx)=>{ setTimeout(()=>{ i.style.height=i.dataset.h+"%"; }, 60+idx*12); }));
+}
+$("#search").addEventListener("input",e=>{ filters.q=e.target.value.trim(); render(); });
+$("#sort").addEventListener("change",e=>{ sortMode=e.target.value; render(); });
+load();
+</script>
+</body>
+</html>
