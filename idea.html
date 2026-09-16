@@ -39,7 +39,9 @@
             --red-bg: #fdf0f0;
         }
 
-        body { font-family: var(--sans); }
+        /* Idea Lab keeps its own light "paper" identity; pin the page
+           background so the site-wide dark body does not bleed through. */
+        body { font-family: var(--sans); background: var(--paper); color: var(--ink); }
 
         /* ── HERO ── */
         .idea-hero {
