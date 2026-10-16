@@ -8,13 +8,13 @@
 
   const STORE_KEY = 'yn-chat';
   const CONTACT = 'info@yogeashnehra.com';
-  const GREETING = "Hi, I'm Yogeash, or rather my AI assistant. Ask me about my work, my projects, or what I'm building right now.";
+  const GREETING = "Kia ora, you're chatting with my AI. Quick version: I built an agentic AI bug-fixer for enterprise codebases, an award-winning autonomous rover, and a GenAI platform in 24 hours. What would you like to know?";
   // Quick starts, one per kind of visitor: [label, message sent]
   const STARTERS = [
-    ['Hiring? Get the 30-second pitch', "I'm hiring. Give me your 30-second pitch."],
-    ["I'm an engineer, talk tech", "I'm an engineer. What's the most technically interesting thing you've built?"],
+    ['Why should we hire you?', 'Why should we hire you?'],
+    ["What's the hardest thing you've built?", "What's the most technically challenging thing you've built, and how did you pull it off?"],
     ['What are you working on now?', 'What are you working on right now?'],
-    ['Just saying hi 👋', "Just browsing. Tell me a bit about yourself."],
+    ['Tell me about yourself', 'Tell me a bit about yourself.'],
   ];
 
   const css = document.createElement('link');
@@ -44,7 +44,7 @@
       <input class="chat-input" id="chat-input" type="text" placeholder="Ask me anything…" maxlength="600" autocomplete="off" aria-label="Your message">
       <button class="chat-send" id="chat-send" type="button" aria-label="Send">→</button>
     </div>
-    <p class="chat-footnote">AI-generated answers, so the odd one may be off. For anything important: <a href="mailto:${CONTACT}">${CONTACT}</a></p>
+    <p class="chat-footnote">AI trained on my work · Reach me directly: <a href="mailto:${CONTACT}">${CONTACT}</a></p>
   </div>
   <button class="chat-btn" id="chat-btn" type="button" aria-label="Chat with Yogeash's AI assistant">
     <span class="chat-btn-icon" aria-hidden="true">✦</span><span class="chat-btn-label">Ask me anything</span>

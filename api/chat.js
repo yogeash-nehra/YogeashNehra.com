@@ -1,8 +1,9 @@
 import Anthropic from '@anthropic-ai/sdk';
 import { PERSONA } from './_persona.js';
 
-// Haiku keeps a public chat bubble fast and cheap; override with CHAT_MODEL.
-const MODEL = process.env.CHAT_MODEL || 'claude-haiku-5-5';
+// Opus gives the sharpest, most convincing answers; set CHAT_MODEL=claude-sonnet-5-5
+// (or claude-haiku-5-5) to trade some polish for lower cost.
+const MODEL = process.env.CHAT_MODEL || 'claude-opus-5-5';
 const MAX_TURNS = 16;          // messages of history sent to the model
 const MAX_MESSAGE_CHARS = 600; // per visitor message
 const RATE_LIMIT = 30;         // requests per IP per window
@@ -53,10 +54,12 @@ export default async function handler(req, res) {
 
     let wrote = false;
     try {
-        const stream = client.messages.stream({
+        const stream = client.beta.messages.stream({
             model: MODEL,
-            max_tokens: 400,
+            max_tokens: 1024,
             output_config: { effort: 'low' },
+            // If a safety classifier declines a harmless question, retry on a fallback model.
+            ...(MODEL.startsWith('claude-haiku') ? {} : { betas: ['server-side-fallback-2026-07-01'], fallbacks: 'default' }),
             system: [{ type: 'text', text: PERSONA, cache_control: { type: 'ephemeral' } }],
             messages,
         });
