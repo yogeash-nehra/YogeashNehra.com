@@ -46,6 +46,16 @@ The Idea Lab (`idea.html`) is a client-side AI tool. It supports:
 - API keys are stored in `localStorage` only — nothing is sent to any server other than the AI provider
 - Three analysis phases: Feasibility score → Execution plan → Repo scaffold download
 
+## AI Yogeash (chatbot)
+
+Every page has a floating chat bubble — a witty, first-person "AI twin" that answers questions about my work, stack, projects, and what I like to build.
+
+- `chat-widget.js` + `chat.css` — the widget, injected on every page; streams replies and keeps the conversation across page navigation (sessionStorage)
+- `api/chat.js` — Vercel function that streams Claude's reply (multi-turn, prompt-cached, per-IP rate limit)
+- `api/_persona.js` — **the bot's personality and everything it knows.** Edit this to teach it new things; it refuses to invent anything not written there
+
+Env vars: `ANTHROPIC_API_KEY` (required), `CHAT_MODEL` (optional, defaults to `claude-opus-5-5`; `claude-sonnet-5-5` or `claude-haiku-5-5` are cheaper).
+
 ## Project structure
 
 ```
