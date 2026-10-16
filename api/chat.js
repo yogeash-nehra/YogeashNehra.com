@@ -39,7 +39,7 @@ export default async function handler(req, res) {
 
     const ip = (req.headers['x-forwarded-for'] || '').split(',')[0].trim() || 'unknown';
     if (rateLimited(ip)) {
-        return res.status(429).json({ error: "Easy there — I've had a lot of questions from you. Give me a few minutes to catch my breath." });
+        return res.status(429).json({ error: "You've sent a lot of messages in a short time. Please try again in a few minutes." });
     }
 
     // Accept the new { messages: [...] } shape, or the old { message: "..." } one.
@@ -55,11 +55,13 @@ export default async function handler(req, res) {
     try {
         const stream = client.messages.stream({
             model: MODEL,
-            max_tokens: 1024,
+            max_tokens: 400,
             output_config: { effort: 'low' },
             system: [{ type: 'text', text: PERSONA, cache_control: { type: 'ephemeral' } }],
             messages,
         });
+        // Visitor closed the tab or hit "New chat": stop generating tokens nobody will read.
+        res.on('close', () => { if (!res.writableEnded) stream.abort(); });
 
         for await (const event of stream) {
             if (event.type === 'content_block_delta' && event.delta.type === 'text_delta') {
@@ -71,16 +73,19 @@ export default async function handler(req, res) {
         const final = await stream.finalMessage();
         if (!wrote) {
             res.write(final.stop_reason === 'refusal'
-                ? "That's one I'll sit out. Ask me about my projects, stack, or what I'm building instead?"
-                : 'Hmm, I drew a blank there — try asking another way?');
+                ? "I can't help with that one, but I'm happy to talk about my work, projects or experience."
+                : 'Sorry, I didn\'t catch that. Could you try asking another way?');
         }
     } catch (err) {
-        console.error('chat error', err instanceof Anthropic.APIError ? `${err.status} ${err.message}` : err);
-        if (!wrote) {
-            const busy = err instanceof Anthropic.RateLimitError || (err instanceof Anthropic.APIError && err.status >= 500);
-            res.write(busy
-                ? "My brain's a bit busy right now — try again in a moment."
-                : 'Something went sideways on my end — try again, or email the real me at yogi.nehra14@gmail.com.');
+        // An abort means the visitor already left, so there's no one to tell.
+        if (!(err instanceof Anthropic.APIUserAbortError)) {
+            console.error('chat error', err instanceof Anthropic.APIError ? `${err.status} ${err.message}` : err);
+            if (!wrote) {
+                const busy = err instanceof Anthropic.RateLimitError || (err instanceof Anthropic.APIError && err.status >= 500);
+                res.write(busy
+                    ? "I'm getting a lot of questions right now. Please try again in a moment."
+                    : 'Something went wrong on my end. Please try again, or reach me at info@yogeashnehra.com.');
+            }
         }
     }
     res.end();

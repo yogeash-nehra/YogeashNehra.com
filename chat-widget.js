@@ -1,19 +1,20 @@
-// ── "Ask AI Yogeash" chat widget ──
-// Injects the floating chat bubble on any page that includes this script.
+// ── Chat assistant widget ──
+// Injects the floating chat assistant on any page that includes this script.
 // Talks to /api/chat (streams plain text) and keeps the conversation in
 // sessionStorage so it survives navigating between pages.
 
 (function () {
   if (document.getElementById('chat-widget')) return;
 
-  const STORE_KEY = 'ai-yogeash-chat';
-  const GREETING = "Kia ora! I'm AI Yogeash — Yogi's digital twin. Ask me what I build, what I know, or what kind of work gets me out of bed. (The real me is just an email away.)";
-  const SUGGESTIONS = [
-    'What do you love building?',
-    "What's your stack?",
-    'Tell me about the rover',
-    'What roles interest you?',
-    'Tell me something fun',
+  const STORE_KEY = 'yn-chat';
+  const CONTACT = 'info@yogeashnehra.com';
+  const GREETING = "Hi, I'm Yogeash, or rather my AI assistant. Ask me about my work, my projects, or what I'm building right now.";
+  // Quick starts, one per kind of visitor: [label, message sent]
+  const STARTERS = [
+    ['Hiring? Get the 30-second pitch', "I'm hiring. Give me your 30-second pitch."],
+    ["I'm an engineer, talk tech", "I'm an engineer. What's the most technically interesting thing you've built?"],
+    ['What are you working on now?', 'What are you working on right now?'],
+    ['Just saying hi 👋', "Just browsing. Tell me a bit about yourself."],
   ];
 
   const css = document.createElement('link');
@@ -23,30 +24,34 @@
 
   document.body.insertAdjacentHTML('beforeend', `
 <div class="chat-widget" id="chat-widget">
-  <div class="chat-panel" id="chat-panel" role="dialog" aria-label="Chat with AI Yogeash">
+  <div class="chat-panel" id="chat-panel" role="dialog" aria-label="Chat with Yogeash's AI assistant">
     <div class="chat-header">
+      <div class="chat-avatar" aria-hidden="true">YN</div>
       <div class="chat-header-info">
-        <h4>Ask AI Yogeash</h4>
-        <p>My AI twin · a little witty, mostly accurate</p>
+        <h4>Yogeash Nehra <span class="chat-badge">AI</span></h4>
+        <p><span class="chat-online"></span>Online · ask about my work</p>
       </div>
       <div class="chat-header-actions">
-        <button class="chat-reset" id="chat-reset" type="button" title="Start a new chat">New</button>
-        <button class="chat-close" id="chat-close" type="button" aria-label="Close">✕</button>
+        <button class="chat-reset" id="chat-reset" type="button" title="Clear this conversation and start fresh">New chat</button>
+        <button class="chat-close" id="chat-close" type="button" aria-label="Close chat">✕</button>
       </div>
     </div>
     <div class="chat-messages" id="chat-messages" aria-live="polite"></div>
     <div class="chat-suggestions" id="chat-suggestions">
-      ${SUGGESTIONS.map(s => `<button class="chat-suggestion" type="button">${s}</button>`).join('')}
+      ${STARTERS.map(([label, msg]) => `<button class="chat-suggestion" type="button" data-msg="${msg.replace(/"/g, '&quot;')}">${label}</button>`).join('')}
     </div>
     <div class="chat-input-row">
-      <input class="chat-input" id="chat-input" type="text" placeholder="Ask me anything…" maxlength="600" autocomplete="off">
+      <input class="chat-input" id="chat-input" type="text" placeholder="Ask me anything…" maxlength="600" autocomplete="off" aria-label="Your message">
       <button class="chat-send" id="chat-send" type="button" aria-label="Send">→</button>
     </div>
+    <p class="chat-footnote">AI-generated answers, so the odd one may be off. For anything important: <a href="mailto:${CONTACT}">${CONTACT}</a></p>
   </div>
-  <button class="chat-btn" id="chat-btn" type="button" aria-label="Chat with AI Yogeash">✦</button>
+  <button class="chat-btn" id="chat-btn" type="button" aria-label="Chat with Yogeash's AI assistant">
+    <span class="chat-btn-icon" aria-hidden="true">✦</span><span class="chat-btn-label">Ask me anything</span>
+  </button>
 </div>`);
 
-  const btn = document.getElementById('chat-btn');
+  const widget = document.getElementById('chat-widget');
   const panel = document.getElementById('chat-panel');
   const messagesEl = document.getElementById('chat-messages');
   const input = document.getElementById('chat-input');
@@ -54,12 +59,16 @@
   const suggestions = document.getElementById('chat-suggestions');
 
   let history = [];
+  let controller = null; // aborts an in-flight reply when starting a new chat
   try { history = JSON.parse(sessionStorage.getItem(STORE_KEY)) || []; } catch { history = []; }
   function save() {
-    try { sessionStorage.setItem(STORE_KEY, JSON.stringify(history.slice(-30))); } catch { /* storage unavailable */ }
+    try {
+      if (history.length) sessionStorage.setItem(STORE_KEY, JSON.stringify(history.slice(-30)));
+      else sessionStorage.removeItem(STORE_KEY);
+    } catch { /* storage unavailable */ }
   }
 
-  // Escape, then allow **bold**, [text](url) and bare site paths / URLs / emails as links.
+  // Escape, then allow **bold**, [text](url), site paths, profile URLs and emails as links.
   function render(text) {
     const esc = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     return esc
@@ -89,13 +98,12 @@
 
   function setLoading(loading) {
     send.disabled = loading;
-    input.disabled = loading;
     send.textContent = loading ? '…' : '→';
   }
 
   async function ask(question) {
     question = question.trim();
-    if (!question || send.disabled) return;
+    if (!question || controller) return;
     suggestions.style.display = 'none';
     history.push({ role: 'user', content: question });
     addMessage('user', question);
@@ -104,6 +112,7 @@
 
     const bubble = addMessage('assistant', '');
     bubble.innerHTML = '<span class="chat-typing"><span></span><span></span><span></span></span>';
+    const mine = controller = new AbortController();
     let reply = '';
 
     try {
@@ -111,10 +120,11 @@
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ messages: history }),
+        signal: mine.signal,
       });
       if (!res.ok || !res.body) {
         const data = await res.json().catch(() => ({}));
-        throw new Error(data.error || 'Something went wrong — try again.');
+        throw new Error(data.error || 'Something went wrong. Please try again.');
       }
       const reader = res.body.getReader();
       const decoder = new TextDecoder();
@@ -125,33 +135,44 @@
         bubble.innerHTML = render(reply);
         messagesEl.scrollTop = messagesEl.scrollHeight;
       }
-      reply = reply.trim() || 'Hmm, I drew a blank — try asking another way?';
+      reply = reply.trim() || "Sorry, I didn't catch that. Could you try asking another way?";
       bubble.innerHTML = render(reply);
       history.push({ role: 'assistant', content: reply });
     } catch (err) {
-      bubble.textContent = err.message && err.message !== 'Failed to fetch' ? err.message : 'Could not reach the server — try again.';
+      if (mine.signal.aborted) return; // "New chat" was pressed; that conversation is gone
+      bubble.textContent = err.message && err.message !== 'Failed to fetch' ? err.message : 'Could not reach the server. Please try again.';
       history.pop(); // drop the unanswered question so it can be retried
+    } finally {
+      if (controller === mine) { controller = null; setLoading(false); }
     }
     save();
-    setLoading(false);
     input.focus();
   }
 
-  btn.addEventListener('click', () => {
-    panel.classList.toggle('open');
-    if (panel.classList.contains('open')) input.focus();
-  });
-  document.getElementById('chat-close').addEventListener('click', () => panel.classList.remove('open'));
-  document.getElementById('chat-reset').addEventListener('click', () => {
+  function newChat() {
+    if (controller) controller.abort();
+    controller = null;
+    setLoading(false);
     history = [];
     save();
     renderAll();
+    input.value = '';
     input.focus();
-  });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') panel.classList.remove('open'); });
+  }
+
+  function toggle(open) {
+    panel.classList.toggle('open', open);
+    widget.classList.toggle('is-open', open);
+    if (open) input.focus();
+  }
+
+  document.getElementById('chat-btn').addEventListener('click', () => toggle(!panel.classList.contains('open')));
+  document.getElementById('chat-close').addEventListener('click', () => toggle(false));
+  document.getElementById('chat-reset').addEventListener('click', newChat);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') toggle(false); });
   send.addEventListener('click', () => ask(input.value));
   input.addEventListener('keydown', e => { if (e.key === 'Enter') ask(input.value); });
-  suggestions.querySelectorAll('.chat-suggestion').forEach(s => s.addEventListener('click', () => ask(s.textContent)));
+  suggestions.querySelectorAll('.chat-suggestion').forEach(s => s.addEventListener('click', () => ask(s.dataset.msg)));
 
   renderAll();
 })();
