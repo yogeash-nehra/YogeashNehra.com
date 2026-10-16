@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/yogeash-nehra/YogeashNehra.com#readme",
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.135.0",
     "@vercel/speed-insights": "^2.0.0"
   }
 }
