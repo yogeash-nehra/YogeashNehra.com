@@ -1,6 +1,6 @@
 # Yogeash Nehra
 
-Auckland, NZ | 02041296097 | yogi.nehra14@gmail.com  
+Auckland, NZ | 02041296097 | info@yogeashnehra.com  
 LinkedIn: https://linkedin.com/in/yogeash-nehra | GitHub: https://github.com/yogeash-nehra | Portfolio: https://yogeashnehra.com
 
 ## Profile
@@ -19,15 +19,22 @@ Graduate Software Developer with hands-on experience building full-stack, cloud-
 
 ## Experience
 
+### Software Engineer
+
+Dimension Software | Auckland, NZ  
+2026 - Present
+
+- Building software across a range of projects at an Auckland software company.
+
 ### Graduate Software Engineer
 
 Aderant | Auckland, NZ  
-Nov 2025 - Present
+Nov 2025 - 2026
 
-- Contribute to enterprise software development across feature improvements, defect resolution, and QA-ready delivery, including reporting screens, data-driven features, and internal development tooling.
-- Investigate software issues by reproducing bugs, checking edge cases, validating expected behaviour, and documenting clear findings for development and testing teams.
+- Contributed to enterprise software development across feature improvements, defect resolution, and QA-ready delivery, including reporting screens, data-driven features, and internal development tooling.
+- Investigated software issues by reproducing bugs, checking edge cases, validating expected behaviour, and documenting clear findings for development and testing teams.
 - Designed and built an agentic AI bug-fixing tool to analyse issues across multiple enterprise codebases and automate reusable workflows for development teams.
-- Collaborate with developers, testers, product owners, and stakeholders in Agile delivery using Git workflows, Azure DevOps, pull requests, code reviews, testing, and QA handover.
+- Collaborated with developers, testers, product owners, and stakeholders in Agile delivery using Git workflows, Azure DevOps, pull requests, code reviews, testing, and QA handover.
 
 ### Software & IT Consultant
 
