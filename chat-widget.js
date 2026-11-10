@@ -8,13 +8,14 @@
 
   const STORE_KEY = 'yn-chat';
   const CONTACT = 'info@yogeashnehra.com';
-  const GREETING = "Kia ora, you're chatting with my AI. Quick version: I built an agentic AI bug-fixer for enterprise codebases, an award-winning autonomous rover, and a GenAI platform in 24 hours. What would you like to know?";
-  // Quick starts, one per kind of visitor: [label, message sent]
+  const GREETING = "Kia ora, you're talking to my AI. Engineer by day, one-person software studio by night: 25+ repos pushed this year, across ten industries. Paste a job description and I'll show you the fit, or describe an idea and I'll sketch how I'd build it.";
+  // Quick starts: [label, message to send] or [label, null, text to pre-fill for the visitor to finish]
   const STARTERS = [
+    ['📋 Match me to a job', null, "Here's the role I'm hiring for, how do you fit? "],
+    ['💡 How would you build my idea?', null, 'How would you build '],
+    ['⚡ What did you ship this week?', 'What did you ship this week?'],
     ['Why should we hire you?', 'Why should we hire you?'],
-    ["What's the hardest thing you've built?", "What's the most technically challenging thing you've built, and how did you pull it off?"],
-    ['What are you working on now?', 'What are you working on right now?'],
-    ['Tell me about yourself', 'Tell me a bit about yourself.'],
+    ["Hardest thing you've built?", "What's the most technically challenging thing you've built, and how did you pull it off?"],
   ];
 
   const css = document.createElement('link');
@@ -38,10 +39,10 @@
     </div>
     <div class="chat-messages" id="chat-messages" aria-live="polite"></div>
     <div class="chat-suggestions" id="chat-suggestions">
-      ${STARTERS.map(([label, msg]) => `<button class="chat-suggestion" type="button" data-msg="${msg.replace(/"/g, '&quot;')}">${label}</button>`).join('')}
+      ${STARTERS.map(([label, msg, prefill]) => `<button class="chat-suggestion" type="button" ${msg ? `data-msg="${msg.replace(/"/g, '&quot;')}"` : `data-prefill="${prefill.replace(/"/g, '&quot;')}"`}>${label}</button>`).join('')}
     </div>
     <div class="chat-input-row">
-      <input class="chat-input" id="chat-input" type="text" placeholder="Ask me anything…" maxlength="600" autocomplete="off" aria-label="Your message">
+      <input class="chat-input" id="chat-input" type="text" placeholder="Ask me anything…" maxlength="4000" autocomplete="off" aria-label="Your message">
       <button class="chat-send" id="chat-send" type="button" aria-label="Send">→</button>
     </div>
     <p class="chat-footnote">AI trained on my work · Reach me directly: <a href="mailto:${CONTACT}">${CONTACT}</a></p>
@@ -172,7 +173,12 @@
   document.addEventListener('keydown', e => { if (e.key === 'Escape') toggle(false); });
   send.addEventListener('click', () => ask(input.value));
   input.addEventListener('keydown', e => { if (e.key === 'Enter') ask(input.value); });
-  suggestions.querySelectorAll('.chat-suggestion').forEach(s => s.addEventListener('click', () => ask(s.dataset.msg)));
+  suggestions.querySelectorAll('.chat-suggestion').forEach(s => s.addEventListener('click', () => {
+    if (s.dataset.msg) return ask(s.dataset.msg);
+    input.value = s.dataset.prefill;
+    input.focus();
+    input.setSelectionRange(input.value.length, input.value.length);
+  }));
 
   renderAll();
 })();
